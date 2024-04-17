@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /*
+       Sobre Classes, objetos e Javascript
+       
+        - A classe é uma forma e objeto são instância dessa classe
+        - Acho que é tipo um modelo, por exemplo, todo objeto terá 3 propriedades e cada objeto vai dar o valor. 
+        - Será criado uma classe com seus atributos e todo os objetos terão esses atributos como propriedades e seus respectivos valores.
+        - A classe só é um modelo, como se fosse uma tabela com cabeçalho em branco, e objeto e uma tabela dela completa.
+        - A existencia de classes é recente no javascript, antigamente ela era - - baseada em prototipos (utilizando funções)
+        - Classes do Javascript não são objetos, são tamplates para objetos do Javascript
+        */
+
+       // Forma antiga e ainda muito utilizada
+       function pessoas (nome, idade){
+            this.nome = nome;
+            this.idade = idade;
+       }
+
+       const pessoa1 = new pessoas("Rachel", 26)
+       console.log(pessoa1.nome)
+
+       // Forma nova disponibilizada no ES6
+       
+       class carros { 
+        constructor(nome, cor, ano){
+            this.nome = nome;
+            this.cor = cor;
+            this.ano = ano;
+        }
+       }
+       
+       const carro1 = new carros("Fiat", "cinza", 2012)
+
+       for(let i in carro1){
+        console.log(i + ": " + carro1[i])
+       }
+
+       
+       console.log("---\n")
+
+       //Objetos, iteração e modificações
+
+       /* Os objetos possuems suas caracteristas, por exemplo: O copo pode possui uma caracterista de tipo de material (vidro), sua cor (azul), altura (10cm) */
+       let copo1 = {
+            tipoMaterial: "vidro",
+            cor: "azul",
+            altura: 10,
+        } 
+
+       /*
+        - Objetos são variáveis
+        - Conjunto de propriedades (chave e valor)
+        - É comum declarar objeto em const (nao sabia)
+        - Conjunto de informações relativos ao objeto em especifico.
+        - Ajuda organizar seu código, junta todas as informações relacionas em um lugar só.
+        - Propriedades podem ser modificadas, adicionaadas e removidas.
+        - Sintaxe de acesso:
+           *objetoNome.propriedade
+           *objetoNome["propriedade"]
+        */
+       
+       const pessoa = {
+        primeiroNome: "João",
+        sobrenome: "Silva",
+        idade: 50,
+        corOlhos: "azul",
+       }
+
+       console.log(pessoa.primeiroNome, pessoa.idade, pessoa["sobrenome"])
+       console.log(pessoa["corOlhos"])
+       console.log(pessoa.sobrenome)
+
+       /*Como percorrer as propriedades em um objeto?
+       
+        Não entendi como o javascript sabe que o "i" é a chave da propriedade. Só aceitei que é o for..in foi projetado para isso, ele ler cada propriedade de cima para baixo.
+       */
+
+       let text = "";
+       for(let i in pessoa){
+        text = text + i + ": " + pessoa[i] + "\n"
+       }
+       console.log(text)
+       
+       console.log("---\n")
+       // Adicionar nova propriedade
+       pessoa.nacionalidade = "brasileiro"
+       
+       console.log(pessoa.nacionalidade)
+
+       console.log("---\n")
+       // remover propriedade
+       delete pessoa.corOlhos // ou pessoa["corOlhos"]
+
+       for(let i in pessoa){
+        console.log(i + ": " + pessoa[i])
+       }
+
+       console.log("---\n")
+
+       // Aninhamentos 
+       // Aninhamento podemos ter objeto dentro de um objeto
+       let fulano = {
+        nome: "Ricardo",
+        idade: 30,
+        carros: {
+            car1: "BMW",
+            car2: "Fiat",
+        }
+       }
+
+       console.log(fulano.carros.car1)
+
+      const student = { 
+        nome: "Ana",
+        idade: 14,
+        notas:{
+            matematica: 10,
+            historia: 7
+        }
+       }
+       console.log(student.notas.historia)
+
+       console.log("---\n")
+
+       //  Objeto com array:
+       const students = {
+        nome:"Bia",
+        idade: 12,
+        notasAnuais:{
+            matematica:[10, 7, 6, 9],
+            historia: [8, 7, 10, 10],
+        },
+       }
+       for(i in students.notasAnuais){
+        console.log(i + ": " + students.notasAnuais[i])
+
+       }
+
+       console.log("---\n")
+       // Objeto com Objeto:
+       const andre = {
+        carros:[
+            {nome: "Fiat", cor: "Vermelho"},
+            {nome: "BMW", cor: "Cinza"}
+        ]
+       }
+
+       for(i in andre.carros){
+        for(j in andre.carros[i]){
+            console.log(j + ": " + andre.carros[i][j])
+        }
+       }
+
+        console.log("---\n")
+
+       //Métodos
+       /*
+       - são ações realizadas pelo objeto
+       - são propriedades no qual o valor é uma function()
+       - this.nomePropriedade faz uma autorreferência. Com ele podemos acessar o valor de uma das propriedades do objeto.*/
+
+        let aluno = {
+        primeironome: "Rachel",
+        sobrenome: "Maia",
+        porcDesconto: .1,
+        nomecompleto: function(){
+            return this.primeironome + " " + this.sobrenome
+        }
+       }
+       //Como acessar um metodo?
+       console.log(aluno.nomecompleto()) // Achei legal esse exemplo //Foi boa ter dados uma lida antes de entrar na aula!!
+       
+       //Como adicionar uma método ao objeto?
+       aluno.valorDesconto = function(){
+            return 1000 * (1 - this.porcDesconto)
+       }
+
+       console.log(aluno.valorDesconto())
+    </script>
+</body>
+</html>

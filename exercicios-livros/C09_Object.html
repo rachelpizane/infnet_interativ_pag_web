@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Objetos são um tipo de dado -->
+    <!-- Iremos aprender sobre propeidades e metodos, criação de objetivo, como acionar uma propriedade de um objeto e falaremos sobre "this" -->
+    <!-- O metodo é uma função dentro de um objeto -->
+    <!-- A propriedade é a junção de uma chave + seu valor -->
+    <!-- Podemos criar um objeto com variáveis já existentes -->
+    <!-- Para acessar o valor de uma propriedades: nomeObjeto.nomePropriedade-->
+    <!-- Para saber se um ojbetvo possui uma propriedade podemos escrever: "nomePropriedade" in nomeObjeto. O valor retornado será booleano -->
+    <!-- Assim como vetores, podemos mudar, remover e adcionar mais propriedades e/ou métodos dentro de um objeto  -->
+    
+
+    <script>
+        const pato = {
+            nome: "Eddy",
+            idade: 3,
+            quack() { // === quack: function() 
+                console.log("QUACK! QUACK!");
+            }
+        }
+
+        pato.quack()
+
+        console.log("----\n")
+
+        const Emilia = {
+            nome: "Emilia",
+            idade: 17,
+            usaOculos: false
+        }
+
+        // Transforme em um objeto e chame cada propriedade em um alert. 
+        let nome = "banana";
+        let color = "yellow";
+        let fruta = {nome, color}
+        console.log("Nome: " + fruta.nome + "\nCor: "+ fruta.color)
+        console.log("teste" in fruta)
+
+        console.log("----\n")
+
+        let aluno = {
+            nome:"Arthur",
+            idade: 14,
+        }
+
+        console.log("nota" in aluno) //false
+
+        aluno.nota = 3; // ADD - Para adicionar umma nova propriedade: 
+        aluno.nome = "Amanda"; //CHANGE - Para mudar uma propriedade existente
+        delete aluno.idade // DELETE - Para deletar uma propriedade existente
+
+        console.log(("nota" in aluno) + "\nNota: " + aluno.nota + "\nNome: " + aluno.nome + "\niDADE: " + aluno.idade) // true
+
+        console.log("----\n")
+
+        // Podemos aninhar objetos dentro de outro objeto
+
+        let formatos = {
+            triangulo: {
+                lados: 3,
+                cor: "azul",
+            },
+            quadrado: {
+                lados: 4,
+                cor: "laranja",
+            },
+        }
+        console.log(formatos.quadrado.cor)
+        // A palavrra-chave "this" é utilizada ára que o método possa acessar o valor de uma propriedade que está no mesmo objeto
+
+        let square = {
+            lado: 5,
+            comprimento: 2,
+            area(){
+                return this.comprimento * this.comprimento
+            }
+        }
+
+        console.log(square.area())
+
+        console.log("----\n")
+
+        // Projetinho
+        let dados = {
+            lado: 6,
+            rolar(){
+                return Math.floor(Math.random() * this.lado) + 1
+            }
+        }
+        console.log(dados.rolar())
+
+        console.log("----\n")
+        //Challenge
+        // 1.1 -
+        let trunfoAnimal = {
+            animal: "Macaco",
+            força: 4,
+            agilidade: 2,
+        }
+
+        console.log("destreza" in trunfoAnimal)
+        trunfoAnimal.destreza = 5;
+        console.log("destreza" in trunfoAnimal)
+
+        trunfoAnimal.força = 5;
+        console.log(trunfoAnimal.força)
+
+        console.log("agilidade" in trunfoAnimal)
+        delete trunfoAnimal.agilidade
+        console.log("agilidade" in trunfoAnimal)
+
+
+        //2.
+        console.log("----\nDesafio do Circulo\n----\n ")
+        let circulo = {
+            raio: 2,
+            area(){
+                return Math.PI * (this.raio ** 2)
+            }
+        }
+        console.log(circulo.area().toFixed(2))
+
+        circulo.circunferencia = function(){
+            return 2 * Math.PI * this.raio
+        }
+
+        console.log(circulo.circunferencia().toFixed(2))
+
+        //3.
+
+        let cesta = {
+            itens: ["Maça", "Banana"],
+            add(fruta){
+                this.itens.push(fruta)
+            },
+            remove(){
+                this.itens.pop()
+            }
+            
+        }
+        cesta.add("Uva");
+        cesta.remove()
+        
+        let lengthArray = cesta.itens.length
+
+        console.log(cesta.itens[lengthArray-1])
+    </script>
+</body>
+</html>

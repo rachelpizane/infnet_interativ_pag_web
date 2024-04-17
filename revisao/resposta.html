@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 1)
+        a) Crie um objeto chamado "aluno" a partir das variáveis abaixo.
+        b) Imprima o valor da propriedade "idade"
+        c) Confirme se há a propriedade "nome"
+        d) Adicione uma propriedade chamada "serie" */
+
+        let nome = "Gabriel"
+        let idade = 26
+
+        const aluno = {nome, idade}
+        console.log(aluno.idade)
+        console.log("nome" in aluno)
+        aluno.serie = 2
+        console.log(aluno.serie)
+
+        console.log("\n----\n")
+        // 2) Crie um dado com o metodo de rolar que retorna um numero aleatorio entre os lados do dado.
+        const dado = {
+            lado: 6,
+            rolar(){
+                return Math.floor(Math.random() * this.lado) + 1
+            }
+        }
+
+        console.log(dado.rolar())
+        
+        console.log("\n----\n")
+        // 3) Crie um objeto de possua um metodo que utilize uma das propriedades do proprio método
+        let produto = {
+            item: 1,
+            nome: "Teclado",
+            preco: 150.00,
+            
+            desconto10(){
+                return this.preco * 0.9;
+            },
+
+            multa10(){
+                return this.preco * 1.1;
+            },
+        }
+        console.log(produto.multa10())
+
+        console.log("\n----\n")
+        // 4) Percorra o objeto abaixo com for..in
+        let car = {
+            nome: "BWM",
+            cor: "vermelho",
+            ano: 2015,
+        }
+        for(i in car){
+            console.log(i + ": " + car[i])
+        }
+        
+        console.log("\n----\n")
+        // 5) Crie uma classe tanto da forma antiga quanto da nova, crie um objeto apartir dessas classe e imprima os no console.
+        function fruta(nome, cor) {
+            this.nome = nome;
+            this.cor = cor;
+        }
+        const banana = new fruta("banana", "amarelo")
+        console.log(banana.nome + ", " + banana.cor)
+
+        class trunfo{
+            constructor(tipo, forca){
+                this.tipo = tipo;
+                this.forca = forca;
+            }
+        }
+        const trunfoDinossauro = new trunfo("dinossauro", 15)
+        console.log(trunfoDinossauro.tipo + ", " + trunfoDinossauro.forca)
+    </script>
+</body>
+</html>
