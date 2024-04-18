@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container_link">
+        <a href="1604_index.html">&lt&lt 1604_index</a>
+        <a href="1704_index.html">1704_index</a>
+        <a href="atividade.html">atividade&gt&gt</a>
+    </div>
+    <p id="teste"></p>
+    <div id="div">
+    </div>
+
+    <p><b>Mude o conteudo</b><br><b>Mude o conteudo</b></p>
+    <div id="container"></div>
+    
+
+    <script>
+        // Objetos construtores
+        function pessoa(primeiroNome, sobrenome, idade, olho){
+            this.primeiroNome = primeiroNome;
+            this.sobrenome = sobrenome;
+            this.idade = idade;
+            this.olho = olho;
+        }
+
+        let pai = new pessoa("Marcelo", "Maia", 61, "marrom");
+
+        let mae = new pessoa("Rosane", "Maia", 55, "marrom");
+        // Como acessar o conteudo textual de um elemento html com id.
+        // document.getElementbyId("id do elemento html").innerHTML
+        // document é uma API?...
+        // .innerHTML é um metodo?.. Ele incluir o conteudo da tag no html
+        // qual diferença entre innerHTML e value?
+        
+        document.getElementById("teste").innerHTML = "Incluindo um conteudo via javascript"
+        document.getElementById("div").innerHTML = "<h1>Consigo colocar uma tag h1 pro aqui?</h1>"
+    
+        document.querySelector("b").innerHTML = "Conteudo mudado";
+
+        // Utilizando .createElement() e .appendChild()
+        let container = document.getElementById("container")
+        let novoParagrafo = document.createElement("p");
+        novoParagrafo.innerHTML = "Esse é um parágrafo incluir em uma tag criada no javascript"
+
+        container.appendChild(novoParagrafo);
+
+
+
+    </script>
+</body>
+</html>

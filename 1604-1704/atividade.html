@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table>
+       
+    <div class="container_link">
+        <a href="1704_index.html">&lt&lt 1704_index</a>
+        <a href="atividade.html">atividade</a>
+        <a href="atividade2v.html">atividade 2v &gt&gt</a>
+    </div>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Primeiro Nome</th>
+            <th>Último Nome</th>
+            <th>Nome Completo</th>
+          </tr>
+        </thead>
+    
+        <tbody id="dados">
+          
+        </tbody>
+      </table>
+    <script>
+        function Pessoa(firstName, lastname, id){
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.id = id;
+        this.fullName = firstName + " " + lastname;
+        }
+
+        const pessoa1 = new Pessoa("João", "Silva", 1)
+        const pessoa2 = new Pessoa("Rachel", "Pizane", 2)
+        const pessoa3 = new Pessoa("Rafiki", "Dias", 3)
+        const pessoa4 = new Pessoa("Bruno", "Nascimento", 4)
+        const pessoa5 = new Pessoa("Yasmin", "Katriny", 4)
+
+        let vetorPessoa = [pessoa1, pessoa2, pessoa3, pessoa4, pessoa5]
+
+        function addConteudoTabela(vetorPessoa){
+        const corpoTabela = document.querySelector("tbody") // Nesse caso ele seleciona o primeiro tbody que tiver no HTML. O método também aceita classes ("".classe") e ids (".id")
+        // Se quisesse selecionar todas as opções, o metódo aconselhavel é document.querySelectorAll()
+
+        for(let i = 0; i < vetorPessoa.length; i++){
+            const pessoa = vetorPessoa[i]
+            const novaLinha = document.createElement('tr') // Cria uma elemento. Como se ela criasse <tr></tr> 
+
+            novaLinha.innerHTML = `
+            <td>${pessoa.id}</td>
+            <td>${pessoa.firstName}</td>
+            <td>${pessoa.lastname}</td>
+            <td>${pessoa.fullName}</td>
+            `
+      
+            corpoTabela.appendChild(novaLinha) // o método appendChild inseri um filho em um elemento-pai. Nese caso ele faz com que o <tr> seja filho da tag tbody
+        }
+        }
+
+        addConteudoTabela(vetorPessoa)
+
+      //solução da Lara
+        // function Pessoa(firstName, lastname, id){
+        // this.firstName = firstName;
+        // this.lastname = lastname;
+        // this.id = id;
+        // this.fullName = firstName + " " + lastname;
+        // }
+
+        // const pessoa1 = new Pessoa("João", "Silva", 1)
+        // const pessoa2 = new Pessoa("Rachel", "Pizane", 2)
+        // const pessoa3 = new Pessoa("Rafiki", "Dias", 3)
+        // const pessoa4 = new Pessoa("Bruno", "Nascimento", 4)
+        // const pessoa5 = new Pessoa("Yasmin", "Katriny", 4)
+
+        // let vetorPessoa = [pessoa1, pessoa2, pessoa3, pessoa4, pessoa5]
+
+        // function addConteudoTabela(vetorPessoa){
+        // const corpoTabela = document.querySelector("tbody")
+
+        // for(let i = 0; i < vetorPessoa.length; i++){
+        //     const pessoa = vetorPessoa[i]
+        //     const novaLinha = document.createElement('tr')
+
+        //     novaLinha.innerHTML = `
+        //     <td>${pessoa.id}</td>
+        //     <td>${pessoa.firstName}</td>
+        //     <td>${pessoa.lastname}</td>
+        //     <td>${pessoa.fullName}</td>
+        //     `
+      
+        //     corpoTabela.appendChild(novaLinha)
+        // }
+        // }
+
+        // addConteudoTabela(vetorPessoa)
+        
+        // Solução do professor: 
+    </script>
+</body>
+</html>

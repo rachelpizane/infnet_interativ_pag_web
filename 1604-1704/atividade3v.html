@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container_link">
+        <a href="atividade2v.html">&lt&lt atividade 2v</a>
+        <a href="atividade3v.html">atividade 3</a>
+    </div>
+    <table id="table">
+        
+    </table>
+    <script>
+        function Pessoa(firstName, lastName, id){
+            this.firstName = firstName;
+            this.lastName = lastName
+            this.id = id;
+            this.fullName = firstName + " " + lastName;
+        }
+        let vetorPessoa = [new Pessoa("Rachel", "Maia", 3), new Pessoa("Rosane", "Maia", 6), new Pessoa("Jessica", "Carvalho", 1), new Pessoa("Carla", "Olivia", 5), new Pessoa("Thiago", "Silva", 4)]
+
+        let vetorPessoaheader = ["Primeiro Nome", "Ultimo Nome", "ID", "Nome Completo"];
+        let tabela = document.getElementById("table");
+
+        function tableHeader(){
+            let tableRow = document.createElement("tr");
+
+            for(i in vetorPessoaheader){
+                let tableCellHeader = document.createElement("th");
+                tableCellHeader.innerHTML = vetorPessoaheader[i]
+                tableRow.appendChild(tableCellHeader)
+            }
+
+            table.appendChild(tableRow)
+        }
+
+        function tableBody(){
+            for(i in vetorPessoa){
+                let tableRow = document.createElement("tr");
+
+                for(j in vetorPessoa[i]){
+                    let tableCell = document.createElement("td");
+                    tableCell.innerHTML = vetorPessoa[i][j];
+                    tableRow.appendChild(tableCell);
+                }
+
+                table.appendChild(tableRow);
+            }
+        }
+
+        tableHeader();
+        tableBody()
+
+    </script>
+</body>
+</html>

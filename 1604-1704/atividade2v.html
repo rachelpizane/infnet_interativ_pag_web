@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container_link">
+        <a href="atividade.html">&lt&lt atividade</a>
+        <a href="atividade2v.html">atividade 2v</a>
+        <a href="atividade3v.html">atividade 3v &gt&gt </a>
+    </div>
+    <table id="table">
+        
+    </table>
+    <script>
+        class Pessoa{
+            constructor(nome, sobrenome, idade){
+                this.nome = nome;
+                this.sobrenome = sobrenome;
+                this.idade = idade;
+                this.nomeCompleto = nome + " " + sobrenome;
+            }
+        }
+        const arrayPessoa = [new Pessoa("Rachel", "Maia", 26), new Pessoa("Vitoria", "Fernandes", 27), new Pessoa("Emilia", "Guedes", 91)]
+
+        table = document.getElementById("table");
+       
+        
+        let header = ["Nome", "Sobrenome", "Idade", "Nome Completo"]
+
+        for(let i = 1; i <= 1; i++){
+            let novaLinha = document.createElement("tr");
+            for(j in header){
+                let celula  = document.createElement("th");
+                celula.innerHTML = header[j];
+                novaLinha.appendChild(celula)
+            }
+
+            table.appendChild(novaLinha)
+        }
+
+        for(let i = 0; i <= arrayPessoa.length; i++){
+            let novaLinha = document.createElement("tr");
+            for(j in arrayPessoa[i]){
+                let celula  = document.createElement("td");
+                celula.innerHTML = arrayPessoa[i][j];
+                novaLinha.appendChild(celula)
+            }
+
+            table.appendChild(novaLinha)
+        }
+        
+        //1 Tentativa
+        // let header = "<tr>";
+        // for(let i = 0; i < 1; i++){
+        //     for(let j in arrayPessoa[i]){
+        //         header = header + "<th>" + j + "</th>"
+        //     }
+        //     header = header + "</tr>";
+        // }
+        // let tbody = ""
+        // for(let i = 0; i < arrayPessoa.length; i++){
+        //     tbody = tbody + "<tr>"
+        //     for(let j in arrayPessoa[i]){
+        //         tbody = tbody + "<td>" + arrayPessoa[i][j] + "</td>"
+        //     }
+        //     tbody = tbody + "<tr>"
+        // }
+    
+        // table.innerHTML = header + tbody;
+    
+    </script>
+</body>
+</html>
