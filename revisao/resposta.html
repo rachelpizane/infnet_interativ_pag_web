@@ -11,6 +11,11 @@
     <table id="tabela"></table>
     <p></p>
 
+    <div id="teste1"></div>
+    <div id="teste2"></div>
+
+    <button id="button">Botão</button>
+
     <script>
         /* 1)
         a) Crie um objeto chamado "aluno" a partir das variáveis abaixo.
@@ -125,6 +130,24 @@
         //7) Insira um conteudo dentro da tag p
         let paragrafo = document.querySelector("p");
         paragrafo.innerHTML = "Resposta da questão nº 7"
+
+        //8) Insira o conteudo na tag com ID teste1 acessando pelo ID. 
+        let teste1 = document.getElementById("teste1");
+
+        teste1.innerHTML = "<strong>Um conteudo</strong>"
+        
+        // 9) Insira um texto somples na tag com id teste2 caessando pela tag
+        let teste2 = document.getElementsByTagName("div").item(1);
+        teste2.innerText = "Conteudo exemplo 2!"
+
+        // 10) Adicione uma ação de click no id "button".Ao clicar, exiba um alert "Bem vindo!". Deixe todos os elementos dentro do script.
+
+        let buttom = document.getElementById("button");
+        
+        buttom.onclick = function (){
+            alert("Bem vindo!!")
+        };
+    
     </script>
 </body>
 </html>
