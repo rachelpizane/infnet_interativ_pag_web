@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /* 
+        Como acessar os elementos da árvore DOM?
+
+        Utilizando "document."podemos atravessar por todos os elementos que contem no html
+        */
+        console.log(document.body) 
+        // ------------------
+
+        // De forma mais primitiva, pouco usada atualmente:
+        console.log(document.body.children.forest.children.tree2) // Pelo o que eu entendi para acessar cada filho-nó, você precisa selecionar os filhos, e escolher pra qual caminho vai. 
+        console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].childNodes[1]); // ele considera o texto????? Ta, é uma array mas o index nao é 0. e ele considera o texto, por isso o forest é 3º, pois h1 - 1º, "Let's find the treasure" = 2º
+        // Pelo visto isso não é muito usado.
+        console.dir(document.body.childNodes[3].childNodes[3].parentElement) //.parentElement você volta para o pai.
+        console.dir(document.body.childNodes[3].childNodes[3].previousElementSibling) // vai para o irmão-elemento anterior.  ".previousSibling" vai para o proximo nó de qualquert tipo
+        console.dir(document.body.childNodes[3].children.tree2.childNodes[1].nextElementSibling) // vai para o próximo irmão-elemento. ".nextSibling" vai para o proximo nó de qualquert tipo
+
+        // Manipulando o objeto
+        let insect = document.body.children.forest.childNodes[3].children.mushroom.childNodes[1];
+        
+        let flower = document.body.children.forest.childNodes[1].childNodes[1];
+
+        insect.innerText = "Bzzz" + " <p>Teste</p>" // fofo haha // Propriedade que muda o conteudo do elemento acessando. Contudo, ele não funcionará para colocar um novo tag, pois o valor é uma string. 
+        flower.innerHTML = "<strong>Bzzz</strong>"// Para você incluir uma tag, utilize a propriedade .innerHTML
+        // ------------------
+        
+        //Existem formas mais fáceis de acessar o DOM (GraçasaDeus)
+
+        //Acessando pelo ID (.getElementById())
+        console.log(document.getElementById("two")); // Se tiver dois id com o mesmo nome, ele irá pegar o primeiro valor encontrando.
+        console.log(document.getElementById("one"));
+
+        //Acessando pelo nome da tag (.getElementsByTagName())
+        console.log(document.getElementsByTagName("div")) // Retorna um vetor de cima pra vaixo de todo os elementos que possuem a tag <div> 
+
+        console.log(document.getElementsByTagName("div").item(1)) // Use o método item() e utilize o index do elemento para acessá-lo.
+        
+        // Exemplo
+        let paragrafo = document.getElementsByTagName("p").item(2)
+        console.log(paragrafo)
+
+        paragrafo.innerHTML = "<strong>Exemplo2</strong>";
+
+        // Acessando pelo nome da classe (.gtElementsbyClassName())
+        let quote = document.getElementsByClassName("example")
+        console.log(quote) // Retorna um vetor de todo os elementos que possuem a classe "example";
+
+        quote = quote.item(0); //Podemos utilizar o método .tem no *ClassName
+        quote.innerHTML = "<em>Oiii</em>"
+        
+        
+        // Acessando "querySelector()";
+        // Ele retorna o primeiro valor encontrado. NÃO É UM VETOR.
+        // Como argumento podemos utilizar "tag", "#id" e ".classe".
+        console.log(document.querySelector("div"));
+        console.log(document.querySelector(".example"));
+        console.log(document.querySelector("#one"));
+
+        // Acessando "querySelectorAll()";
+        // Pega todo so valores que possem o argumento. RETORNA UM VETOR.
+        console.log(document.querySelectorAll("div"));
+        
+        /*
+        - Quantos tipos de acessos kkkk
+        - O mais normal é utilizar o do ID, "querySelector" é usado para situações mais completas. 
+        - Utilize a propriedade de acordo com o seu gosto, só seja consistente
+        */
+        // -----------------
+
+    </script>
+</body>
+</html>

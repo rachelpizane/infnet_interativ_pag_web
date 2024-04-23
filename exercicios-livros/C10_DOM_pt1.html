@@ -1,3 +1,9 @@
+<!-- 
+    Abordaremos: 
+  - Basic DOM traversing
+  - Accessing elements in the DOM
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +35,7 @@
         </div>
       </div>
     </div>
+
     <!-- ---Exemplo 2-------------- -->
     <h1>Just an example</h1>
     <div id="one" class="example">Hi!</div>
@@ -38,8 +45,8 @@
     <p><strong>Exemplo1</strong></p>
     <p><span>Oiie</span></p>
     <p><em>Exemplo3</em></p>
+    
     <!--  -->
-
     <p id="botao" onclick="exibir()">Isso é um botão</p>
     <a href="#">Botao nº2</a>
     <button id="btn" onclick="clique(this)">Clique aqui!</button><br>
@@ -48,11 +55,17 @@
     <p id="magic">AAAAAA</p>
     
     <script>
-        /* Document OOBJETC é o html
-        é uma representação da pagina web.
-        usando document. podemos atravessar por todos os elementos que contem no html*/
-        console.log(document.body) // hm. com o document.acessamos tudo que tem no body
+        /* 
+        Como acessar os elementos da árvore DOM?
+
+        Utilizando "document."podemos atravessar por todos os elementos que contem no html
+        */
+        console.log(document.body) 
+        // ------------------
+
+        // De forma mais primitiva, pouco usada atualmente:
         console.log(document.body.children.forest.children.tree2) // Pelo o que eu entendi para acessar cada filho-nó, você precisa selecionar os filhos, e escolher pra qual caminho vai. 
+
         console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].childNodes[1]); // ele considera o texto????? Ta, é uma array mas o index nao é 0. e ele considera o texto, por isso o forest é 3º, pois h1 - 1º, "Let's find the treasure" = 2º
         // Pelo visto isso não é muito usado.
         console.dir(document.body.childNodes[3].childNodes[3].parentElement) //.parentElement você volta para o pai.
@@ -64,17 +77,18 @@
         
         let flower = document.body.children.forest.childNodes[1].childNodes[1];
 
-        insect.innerText = "Bzzz" + " <p>Teste</p>" // fofo haha // Propriedade que muda o conteudo de dentro do elemento. Contudo, ele não funcionará para colocar um novo elemento, pois o valor é uma string. 
-        flower.innerHTML = "<strong>Bzzz</strong>"// Para você incluir um elemento, utilize a propriedade .innerHTML
-
-        //Existem formar mais fáceis de acessar o DOM (GraçasaDeus)
+        insect.innerText = "Bzzz" + " <p>Teste</p>" // fofo haha // Propriedade que muda o conteudo do elemento acessando. Contudo, ele não funcionará para colocar um novo tag, pois o valor é uma string. 
+        flower.innerHTML = "<strong>Bzzz</strong>"// Para você incluir uma tag, utilize a propriedade .innerHTML
+        // ------------------
+        
+        //Existem formas mais fáceis de acessar o DOM (GraçasaDeus). Esses são os mais comuns:
 
         //Acessando pelo ID (.getElementById())
-        console.log(document.getElementById("two")); // Se tiver dois id com o mesmo nome, ele irá pegar o primeiro valor encontrando.
+        console.log(document.getElementById("two")); // Se tiver dois id com o mesmo nome, ele irá pegar o primeiro valor encontrado.
         console.log(document.getElementById("one"));
 
-        //Acessando pelo nome da tag (.getElementsByTagName)
-        console.log(document.getElementsByTagName("div")) // Retorna um vetor de cima pra vaixo de todo os elementos que possuem a tag <div> 
+        //Acessando pelo nome da tag (.getElementsByTagName())
+        console.log(document.getElementsByTagName("div")) // Retorna um vetor de cima pra baixo de todo os elementos que possuem a tag <div> 
 
         console.log(document.getElementsByTagName("div").item(1)) // Use o método item() e utilize o index do elemento para acessá-lo.
         
@@ -83,17 +97,14 @@
         console.log(paragrafo)
 
         paragrafo.innerHTML = "<strong>Exemplo2</strong>";
-        // Acessando pelo nome da classe (.gtElementsbyClassName)
-        
+
+        // Acessando pelo nome da classe (.gtElementsbyClassName())
         let quote = document.getElementsByClassName("example")
         console.log(quote) // Retorna um vetor de todo os elementos que possuem a classe "example";
 
-        quote = quote.item(0); //Podemos utilizar o método .tem no *ClassName
+        quote = quote.item(0); //Podemos utilizar o método .item() da mesma forma que (.getElementsByTagName())
         quote.innerHTML = "<em>Oiii</em>"
         
-        // Quantos tipos de acessos kkkk
-        // ** O mais normal é utilizar o do ID, "querySelector" é usado para situações mais completas. 
-        // Utilize a propriedade de acordo com o seu gosto, só seja consistente
         
         // Acessando "querySelector()";
         // Ele retorna o primeiro valor encontrado. NÃO É UM VETOR.
@@ -103,39 +114,14 @@
         console.log(document.querySelector("#one"));
 
         // Acessando "querySelectorAll()";
-        // Pega todo so valores que possem o argumento. RETORNA UM VETOR.
+        // Pega todo so valores que possuem o argumento. RETORNA UM VETOR.
         console.log(document.querySelectorAll("div"));
         
-        // Elementos clicláveis
-        // Podemos conectar uma função a um elemento. / Utilize o atributo onclick="" e insira função como valor. 
-
-        function exibir(){
-            alert("Yeeeeeeee²")
-        }
-
-        // Também podemos chamar o elemento e inserir a propriedade no script.
-        let link = document.getElementsByTagName("a").item(0);
-        
-        link.onclick = function (){
-            alert("Allooooooo")
-        }
-
-        // Ao utilizar "this" como argumento, o proprio elemento é mudado.
-        function clique(a) {
-            a.innerHTML = "Clicado!";
-        }
-        // Manipulando os estilos. (.style.propriedadeCSS)
-        function desaparecerQuadro(){
-            let pap = document.getElementById("magic");
-            
-            if(pap.style.display === "none"){
-            pap.style.display = "block"
-            } else {
-            pap.style.display = "none"
-            }
-        }
-        
-
+        /*
+        - Quantos tipos de acessos kkkk
+        - O mais normal é utilizar o do ID, "querySelector" é usado para situações mais completas. 
+        - Utilize a propriedade de acordo com o seu gosto, só seja consistente
+        */
     </script>
 </body>
 </html>
