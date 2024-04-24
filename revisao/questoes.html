@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table,th,td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: .25rem;
+        }
+    </style>
 </head>
 <body>
     <table id="tabela"></table>
+    
     <p></p>
-    <div class="teste1"></div>
+    <div id="teste1"></div>
     <div class="teste2"></div>
+
+    <button id="btn">Botão</button>
 
     <script>
         /* 1)
@@ -17,15 +27,15 @@
         b) Imprima o valor da propriedade "idade"
         c) Confirme se há a propriedade "nome"
         d) Adicione uma propriedade chamada "serie" */
-        
+        let nome = "Gabriel"
+        let idade = 26
+
         console.log("\n----\n")
         // 2) Crie um dado com o metodo de rolar que retorna um numero aleatorio entre os lados do dado.
-        
-        
+       
         console.log("\n----\n")
         // 3) Crie um objeto que possua um metodo que utilize uma das propriedades do proprio objeto
-
-    
+       
         console.log("\n----\n")
         // 4) Percorra o objeto abaixo com for..in
         let car = {
@@ -34,17 +44,23 @@
             ano: 2015,
         }
 
+       
+        console.log("\n----\n")
         // 5) Crie uma classe tanto da forma antiga quanto da nova, crie um objeto a partir dessas classe e imprima os no console.
-        
+       
+        console.log("\n----\n")
         //6) Crie um vetor com 2 objetos com 2 propriedades e crie uma tabela 3 x 2 gerando linhas e colunas na tag table acima. Não esqueça do cabeçalho.
-
-        //7) Insira um conteudo dentro da tag p
-
-        //8) Insira o conteudo na tag com ID teste1 acessando pelo ID.
-
-        // 9) Insira um texto somples na tag com id teste2 caessando pela tag
-
+        
+        /* createElement("tag") e appendChild*/
+    
+        //7) Insira um conteudo dentro da tag p com Query
+  
+        //8) Insira o conteudo importante na tag com ID teste1 acessando pelo ID.
+      
+        // 9) Insira um texto simples na tag div com class "teste2" com o QuerySelectorAll;
+       
         // 10) Adicione uma ação de click no id "button".Ao clicar, exiba um alert "Bem vindo!". Deixe todos os elementos dentro do script.
+
     </script>
 </body>
 </html>

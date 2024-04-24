@@ -128,17 +128,17 @@
         tableBody()
 
         //7) Insira um conteudo dentro da tag p
-        let paragrafo = document.querySelector("p");
+        let paragrafo = document.getElementsByTagName("p").item(0);
         paragrafo.innerHTML = "Resposta da questão nº 7"
 
-        //8) Insira o conteudo na tag com ID teste1 acessando pelo ID. 
+        //8) Insira o conteudo importante na tag com ID teste1 acessando pelo ID. 
         let teste1 = document.getElementById("teste1");
 
         teste1.innerHTML = "<strong>Um conteudo</strong>"
         
-        // 9) Insira um texto somples na tag com id teste2 caessando pela tag
-        let teste2 = document.getElementsByTagName("div").item(1);
-        teste2.innerText = "Conteudo exemplo 2!"
+        // 9) Insira um texto simples na tag div com class "teste2" com o QuerySelectorAll;
+        let teste2 = document.querySelectorAll("div").item(1);
+        teste2.innerText = "<p>Aeee</p>";
 
         // 10) Adicione uma ação de click no id "button".Ao clicar, exiba um alert "Bem vindo!". Deixe todos os elementos dentro do script.
 

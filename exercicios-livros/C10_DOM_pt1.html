@@ -55,6 +55,18 @@
     <p id="magic">AAAAAA</p>
     
     <script>
+        /*
+        RESUMO
+        Métodos para acessar elementos em um documento.HTML:
+        1) Que retorna um vetor com todos os valores:
+        document.getElementsByTagName()
+        document.getEelemtnsByClassName()
+        document.querySelectorAll(); ==> exemplos de argumento: p, #resultado, .card;
+
+        2) Que retorna o primeiro valor investigado: 
+        document.getElementById() ==> O mais utilizado
+        document.querySelector()
+        */
         /* 
         Como acessar os elementos da árvore DOM?
 
@@ -64,7 +76,7 @@
         // ------------------
 
         // De forma mais primitiva, pouco usada atualmente:
-        console.log(document.body.children.forest.children.tree2) // Pelo o que eu entendi para acessar cada filho-nó, você precisa selecionar os filhos, e escolher pra qual caminho vai. 
+        console.log(document.body.children.forest.children.tree2) // Pelo o que eu entendi para acessar cada filho-nó, você precisa selecionar os filhos (.childre), e escolher pra qual caminho vai (.forest). 
 
         console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].childNodes[1]); // ele considera o texto????? Ta, é uma array mas o index nao é 0. e ele considera o texto, por isso o forest é 3º, pois h1 - 1º, "Let's find the treasure" = 2º
         // Pelo visto isso não é muito usado.
