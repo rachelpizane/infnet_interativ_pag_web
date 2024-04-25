@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #changeLink{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Troque o link</button>
+    <a id="changeLink" target="_blank" href="https://www.google.com.br/">Google</a>
+
+    <script>
+        // Atividade em aula = 24/04
+        
+        // EXC 2: 
+        // Criar um hiperlink com o atributo href para http://google.com e target para uma nova página. No arquivo JS, alterar o atributo href do hiperlink para https://infnet.edu.br/ se o atributo fordiferente desde endereço
+        //(Criarei um botão para fazer essa troca + a do conteudo.)
+        let btn = document.getElementById("btn");
+        
+        let changeLink = document.getElementById("changeLink");
+        changeLink.style.color = "black"
+        btn.addEventListener("click",()=>{
+            
+            if(changeLink.innerHTML === "Google"){
+                changeLink.innerHTML = "Infnet";
+                changeLink.href = "https://infnet.edu.br/";
+            } else {
+                changeLink.innerHTML = "Google";
+                changeLink.href = "http://google.com";
+            }
+        })
+
+        // EXC 3:
+        //Remova o atributo target do hiperlink criado no exercício anterior pelo arquivo JS e usando o DOM;
+        changeLink.removeAttribute("target");
+
+        //EXC 4:
+        // Coloque uma imagem da com a tag <img> no corpo do HTML
+        // Adicione o atributo title da imagem com um texto informativo sobre a imagem pelo arquivo JS e usando o DOM
+        
+        let body = document.getElementsByTagName("body").item(0);
+        let img = document.createElement("img")
+        body.appendChild(img)
+        img.src = "https://cdn-icons-png.flaticon.com/512/25/25231.png"
+        img.width = "150";
+        img.style.display = "block";
+    
+
+
+        // //EXC 1
+        // let btn = document.getElementById("btn");
+        // let changeLink = document.getElementById("changeLink")
+
+        // //EXC 2
+        // btn.onclick = function(){
+
+        //     if(changeLink.innerHTML === "Google"){
+        //         changeLink.href = "https://lms.infnet.edu.br/";
+        //         changeLink.innerHTML = "Infnet";
+        //     } else {
+        //         changeLink.href = "https://www.google.com.br/";
+        //         changeLink.innerHTML = "Google";
+        //     }
+        // }
+        // //EXC 3
+        // changeLink.removeAttribute("target")
+
+        // //EXC 4;
+        // let body = document.getElementsByTagName("body").item(0);
+        // let img = document.createElement("img");
+
+        // body.appendChild(img)
+
+        // img.src = "https://cdn-icons-png.flaticon.com/512/25/25231.png"
+        // img.width = "150";
+        // img.alt ="logo do GitHub"
+        // img.style.display = "block"
+        // img.style.padding = "1rem"
+        
+        
+
+        
+    </script>
+</body>
+</html>

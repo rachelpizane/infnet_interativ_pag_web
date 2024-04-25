@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <div id="teste">
+        <p></p>
+        <p></p>
+    </div>
+    <img id="img" src="" alt="">
+    <!-- 
+        DOM
+        - O DOM é gerado pelo próprio browser.
+        - o DOM já vem incluido em todos os navegadores.
+        - Ele cria uma interface que representa a página web carregada.
+        - Ele cria uma arvore, onde se começa pelo document. e que vai se abrindo de pai para filho.
+        - Ao carregar página, o navegador cria o documento e a interface do DOM.
+        - Ele transforma os elementos em objetos, que possuem propriedades e métodos.
+        - Sendo um objeto o javascript, consegue acessá-lo e manipulá-lo.
+        
+        COMO ACESSAR E SELECIONAR OS ELEMENTOS:
+        - Podemos procurá-lo no document. buscando pela sua tag, id, ou classe:
+        .getElementByID(), .getElementsByTagName(), .getElementsByClassName(), .getElementsByClassName()
+        
+        MUDANDO O VALOR DE UM ATRIBUTO
+        - Ao selecionar e acessar o elemento com os metodos acima, podemos acessar sua propriedade, que tem o mesmo nome do atributo, e mudar o seu valor. Por exemplo.
+        document.getElementById("img").src = "imagem.png"
+        
+        INSERINDO CONTEUDOS:
+        Podemos fazer isso com as propriedades:
+        .innerHTML, que insere um conteudo, levando em consideração se é uma marcação HTML ou não.
+        
+        .innerText, insere um conteudo ao elemento sem levar em consideração a marcação do HTML, tratando como um texto simples.
+
+        COMO REMOVER UM ATRIBUTO:
+        Utilize o método .removeAttributte("") exemplo:
+        document.getElementById("img").removeAttributte("target");
+     -->
+     <script>
+        
+        let img =  document.getElementById("img");
+        img.src = "https://cdn-icons-png.flaticon.com/512/25/25231.png"
+        img.width = "200"; // legaaaal
+        document.getElementsByClassName
+
+     </script>
+</body>
+</html>
