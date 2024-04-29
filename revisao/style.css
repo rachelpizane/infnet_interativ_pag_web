@@ -6,3 +6,9 @@ table,th,td {
 td,th {
     padding: .5rem;
 }
+
+#pap3 {
+    height: 50px;
+    background-color: pink;
+    border: 3px dashed red;
+}

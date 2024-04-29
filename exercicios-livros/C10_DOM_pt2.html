@@ -4,78 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            width: 70px;
+            height: 70px;
+            background-color: rgb(82, 39, 39);
+        }
+    </style>
 </head>
 <body>
-
+    <button id="btn1" onclick="alertEX()">Alert! 1</button>
+    <button id="btn2">Alert! 2</button>
+    <button id="btn3" onclick="changeColor(this)">Alert! 3</button>
+    <p style="background-color: yellow">Isso é um teste!</p>
+    
+    <div id="#282828"></div>
+    <div id="#808080"></div>
+    <div id="#C0C0C0"></div>
     <script>
-        /* 
-        Como acessar os elementos da árvore DOM?
+    //  Podemos incluir uma ação ao clicar em um elemento. Por agora, temos duas formas de fazer isso:
 
-        Utilizando "document."podemos atravessar por todos os elementos que contem no html
-        */
-        console.log(document.body) 
-        // ------------------
+    //1- Adicone o atributo "onclick" no elemento no html que deseja que seja clicado.
+    
+    function alertEX(){
+        alert("Aii! Isso doeu!!")
+    }
+    //2 - Também podemos acessar o elemento pelo JS e adicionar uma ação. Sem ter que alterá-lo no HTML
+    let btn2 = document.getElementById('btn2')
+    
+    btn2.onclick = ()=>{
+        alert("Iii... qual foi???!")
+    }
+    // Ao utilizar this, estamoos nos referindo ao proprio elemento, segye yn exenoki abaixo:
+    function changeColor(btn){
+        btn.style.color = "red";
+    }
+    // Para maniipular o estilo dos elementos, utilzie o metodo .style.propriedadeEstilo
+    let pap = document.getElementsByTagName("p").item(0);
+    pap.style.display = "none"
 
-        // De forma mais primitiva, pouco usada atualmente:
-        console.log(document.body.children.forest.children.tree2) // Pelo o que eu entendi para acessar cada filho-nó, você precisa selecionar os filhos, e escolher pra qual caminho vai. 
-        console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].childNodes[1]); // ele considera o texto????? Ta, é uma array mas o index nao é 0. e ele considera o texto, por isso o forest é 3º, pois h1 - 1º, "Let's find the treasure" = 2º
-        // Pelo visto isso não é muito usado.
-        console.dir(document.body.childNodes[3].childNodes[3].parentElement) //.parentElement você volta para o pai.
-        console.dir(document.body.childNodes[3].childNodes[3].previousElementSibling) // vai para o irmão-elemento anterior.  ".previousSibling" vai para o proximo nó de qualquert tipo
-        console.dir(document.body.childNodes[3].children.tree2.childNodes[1].nextElementSibling) // vai para o próximo irmão-elemento. ".nextSibling" vai para o proximo nó de qualquert tipo
-
-        // Manipulando o objeto
-        let insect = document.body.children.forest.childNodes[3].children.mushroom.childNodes[1];
-        
-        let flower = document.body.children.forest.childNodes[1].childNodes[1];
-
-        insect.innerText = "Bzzz" + " <p>Teste</p>" // fofo haha // Propriedade que muda o conteudo do elemento acessando. Contudo, ele não funcionará para colocar um novo tag, pois o valor é uma string. 
-        flower.innerHTML = "<strong>Bzzz</strong>"// Para você incluir uma tag, utilize a propriedade .innerHTML
-        // ------------------
-        
-        //Existem formas mais fáceis de acessar o DOM (GraçasaDeus)
-
-        //Acessando pelo ID (.getElementById())
-        console.log(document.getElementById("two")); // Se tiver dois id com o mesmo nome, ele irá pegar o primeiro valor encontrando.
-        console.log(document.getElementById("one"));
-
-        //Acessando pelo nome da tag (.getElementsByTagName())
-        console.log(document.getElementsByTagName("div")) // Retorna um vetor de cima pra vaixo de todo os elementos que possuem a tag <div> 
-
-        console.log(document.getElementsByTagName("div").item(1)) // Use o método item() e utilize o index do elemento para acessá-lo.
-        
-        // Exemplo
-        let paragrafo = document.getElementsByTagName("p").item(2)
-        console.log(paragrafo)
-
-        paragrafo.innerHTML = "<strong>Exemplo2</strong>";
-
-        // Acessando pelo nome da classe (.gtElementsbyClassName())
-        let quote = document.getElementsByClassName("example")
-        console.log(quote) // Retorna um vetor de todo os elementos que possuem a classe "example";
-
-        quote = quote.item(0); //Podemos utilizar o método .tem no *ClassName
-        quote.innerHTML = "<em>Oiii</em>"
-        
-        
-        // Acessando "querySelector()";
-        // Ele retorna o primeiro valor encontrado. NÃO É UM VETOR.
-        // Como argumento podemos utilizar "tag", "#id" e ".classe".
-        console.log(document.querySelector("div"));
-        console.log(document.querySelector(".example"));
-        console.log(document.querySelector("#one"));
-
-        // Acessando "querySelectorAll()";
-        // Pega todo so valores que possem o argumento. RETORNA UM VETOR.
-        console.log(document.querySelectorAll("div"));
-        
-        /*
-        - Quantos tipos de acessos kkkk
-        - O mais normal é utilizar o do ID, "querySelector" é usado para situações mais completas. 
-        - Utilize a propriedade de acordo com o seu gosto, só seja consistente
-        */
-        // -----------------
-
+    let div = document.getElementsByTagName("div");
+    for(let i = 0; i < div.length; i++){
+        div[i].style.backgroundColor = div[i].id;
+    }
     </script>
 </body>
 </html>

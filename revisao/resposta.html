@@ -19,6 +19,8 @@
     <button id="btn">Troque o link</button>
     <a id="changeLink" target="_blank" href="https://www.google.com.br/">Google</a>
 
+    <p id="pap3">Isso é um teste!</p>
+    <button id="btn3" onclick="mudeCor(this)"">Mude a minha cor!</button>
     <script>
         /* 1)
         a) Crie um objeto chamado "aluno" a partir das variáveis abaixo.
@@ -181,6 +183,15 @@
         img.src = "https://cdn-icons-png.flaticon.com/512/25/25231.png"
         img.width = "150";
         img.style.display = "block";
+
+         // 14) Faça com que o paragrafo com id "pap3" desapareça.
+        let pap = document.getElementById("pap3");
+        
+        pap.style.display = "none";
+        //15) Crie um botão no qual ele mesmo mude de cor
+        function mudeCor(btn){
+            btn.style.color = "blue";
+        }
     </script>
 </body>
 </html>
