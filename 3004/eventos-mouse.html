@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 100px;
+            width: 100px;
+            border: 3px solid black
+        }
+
+        .div1,
+        #div2,
+        #div3,
+        #div4,
+        #div5,
+        #div6,
+        #div7,
+        #div8,
+        #div9,
+        #div10 {
+            display: block;
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            margin: 2rem 1rem;
+            border: 3px solid transparent
+        }
+        #div4t, #div6t, #div7t, #div5t{
+            display: block;
+            background-color: red;
+            width: 50px;
+            height: 50px;
+        }
+
+        #div5tt {
+            background-color: rgb(202, 202, 202);
+            width: 30px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Olá!</h1>
+    <div id="box"></div>
+
+    <h2>click</h2>
+    <div id=div1 class="div1">div1</div>
+
+    <h2>contextmenu</h2>
+    <div id=div2 class="div2">div2</div>
+    
+    <h2>dblclick</h2>
+    <div id=div3 class="div3">div3</div>
+
+    <h2>mouseenter</h2>
+    <div id=div4>
+        <div id="div4t">div4</div>
+    </div>
+
+    <h2>mouseover</h2>
+    <div id=div5>
+        <div id="div5t">
+            <div id="div5tt">div5</div>
+        </div>
+    </div>
+
+    <h2>mouseout</h2>
+    <div id=div6>
+        <div id="div6t">div6</div>
+    </div>
+
+    <h2>mouseleave</h2>
+    <div id=div7>
+        <div id="div7t">div7</div>
+    </div>
+
+    <h2>mousemove</h2>
+    <div id=div8>div8</div>
+
+    <h2>mousedown & mouseup</h2>
+    <div id=div9>div9</div>
+    <div id=div10></div>
+            <script>
+                // EVENTOS!!
+                //Metodos predefinidos para cada elemento do html.Hoje veremos os eventos com mouse.
+
+                // Exemplos em aula:
+                let box = document.getElementById("box")
+                console.log(box.style)
+                // box.onmouseenter = function(){
+                //     box.style.backgroundColor = "red"
+                // }
+                box.onmouseleave = () => {
+                    box.style.backgroundColor = "blue"
+                }
+                box.oncontextmenu = function () {
+                    box.style.border = "3px dashed orange";
+                }
+                box.onmousedow = () => {
+                    box.style.backgroundColor = "green"
+                }
+                box.onmouseover = () => {
+                    box.style.backgroundColor = "pink";
+                    if (box.style.backgroundColor == "pink") {
+                        box.style.backgroundColor = "black"
+                    }
+                }
+                //EXEMPLO PARA CADA EVENTO
+                //ONCLICK/"CLICK" - Ocorre quanto o elemento é clicado
+                let div1 = document.getElementById("div1");
+                let i = 0;
+                div1.onclick = function () {
+                    div1.style.backgroundColor = "yellow"
+                    div1.style.border = "3px dashed black"
+                    i++
+                    console.log(i) //hm... todo click faz com que a função se ative
+                }
+
+                // ONCONTEXTMENU/"CONTEXTMENU" - Ocore quando clicamos no elemento com o botão direito.
+                let div2 = document.getElementById("div2");
+                div2.addEventListener("contextmenu", () => {
+                    console.log(div2.style.backgroundColor) // hm.. então no dom ele inicia sem nada??
+                    if (div2.style.backgroundColor !== "green") {
+                        div2.style.backgroundColor = "green"
+                        div2.style.transition = "1s linear all"
+                        div2.style.transform = "rotate(-60deg)"
+                        console.log(div2.style.backgroundColor)
+                    } else {
+                        div2.style.backgroundColor = "red"
+                        div2.style.transform = "rotate(0deg)"
+                        console.log(div2.style.backgroundColor)
+                    }
+
+                })
+
+                //ONDBLCLICK/"DBLCLICK"- Ocorre quando clicamos duas vezes no elemento.
+                let div3 = document.getElementById("div3");
+                div3.ondblclick = () => {
+                    div3.style.border = "3px solid blue"
+                }
+
+                // ONMOUSEENTER/"MOUSEENTER"- Ocorre quando o mouse é movido para dentro do elemento. O evento ocorre somente ao entrar, para que ocorra novamente você precisa sair e entrar dnv.
+                // Ele só considera quando você entra direto ao elemento-pai, ele não ativará se entrar nos elementos-filhos
+                let vetorCor = ["blue", "yellow", "black", "green", "pink", "red"]
+                onmouseenter
+
+                let div4 = document.getElementById("div4");
+                i = 0;
+                div4.onmouseenter = () => {
+                    div4.style.backgroundColor = vetorCor[i++]
+
+                    if (i === vetorCor.length) {
+                        i = 0
+                    }
+                    console.log(i)
+                } // Yeee consegui de uma forma diferente da do professor.
+
+
+                //MOUSEOVER/"MOUSEOVER" - Ocorre quando o mouse entra no elemento. O método ativa a função toda vez que ele entrar tanto no elemento-pai, quanto no elemento-filho.
+
+                let cont = 0;
+                let div5 = document.getElementById("div5");
+                div5.onmouseover = () => {
+                    div5.style.backgroundColor = vetorCor[cont++]
+
+                    if (cont === vetorCor.length) {
+                        cont = 0
+                    }
+                    console.log(cont)
+                };
+
+                // ONMOUSEOUT/"MOUSEOUT" - Ocorre quando movemos o mouse para fora tanto do elemento-pai, quanto to elemento-filho
+                let div6 = document.getElementById("div6");
+                div6.onmouseout = () => {
+                    div6.style.backgroundColor = vetorCor[cont++]
+
+                    if (cont === vetorCor.length) {
+                        cont = 0
+                    }
+                    console.log(cont)
+                }
+
+                // ONMOUSELEAVE/"MOUSELEAVE" - Ocorre quando movemos o mouse para fora diretamente do elemento-pai. Nada acontecer ao sair dos elementos-filhos
+                let div7 = document.getElementById("div7");
+                div7.onmouseleave = () => {
+                    div7.style.backgroundColor = vetorCor[cont++]
+
+                    if (cont === vetorCor.length) {
+                        cont = 0
+                    }
+                    console.log(cont)
+                };
+
+               
+                // ONMOUSEMOVE/"MOUSEMOVE" - Ocorre enquanto o ponteiro estiver se movendo dentro do elemento.
+                let div8 = document.getElementById("div8");
+                div8.style.transition = "80ms";
+                i = 0;
+                div8.onmousemove = () => {
+                    div8.style.border = `3px dashed ${vetorCor[i++]}`
+                    if (i === vetorCor.length) {
+                        i = 0
+                    }
+                }
+
+                //ONMOUSEDOWN/"MOUSEDOWN" - Ocorre quando pressiona o elemento
+                let div9 = document.getElementById("div9");
+                
+                div9.onmousedown = ()=>{
+                    div9.style.backgroundColor = "orange"
+                }
+
+                //ONMOUSEUP/"MOUSEUP" = Ocorre quando solta um elemento pressionado
+                div9.onmouseup = ()=>{
+                    div9.style.backgroundColor = "green"
+                }
+
+            </script>
+</body>
+
+</html>

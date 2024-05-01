@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1, #box2, #box11, #box21 {
+            width: 100px;
+            height: 100px;
+            border: 3px solid black;
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>EXC 01:</h2>
+    <div id="box1" onclick="div1Click(this)"></div>
+    <div id="box11" onclick="div1Click2v(this)"></div>
+
+    <h2>EXC 02:</h2>
+    <div id="box2" onmouseover="div2Mouseover(this)"></div>
+    <div id="box21" onmouseover="div2Mouseover2v(this)"></div>
+
+    <script>
+        //EXC 1
+        /*
+        Criar uma div
+            300px por 400px
+            Identificador div_1
+
+        No arquivo JS
+            Criar uma função div1Click
+            alterar o atributo onclick da div para direcionar para a função
+            div1Click
+            Na função div1Click, mudar a cor de fundo da div para vermelho,
+            azul, verde, amarelo, roxo nesta sequência a cada click na div.
+        */
+
+        // Minha resposta
+        function div1Click(box1){
+            if(box1.style.backgroundColor === "" || box1.style.backgroundColor === "red"){
+                box1.style.backgroundColor = "blue"
+            } else if(box1.style.backgroundColor === "blue"){
+                box1.style.backgroundColor = "green"
+            } else if(box1.style.backgroundColor === "green"){
+                box1.style.backgroundColor = "yellow"
+            } else if(box1.style.backgroundColor === "yellow"){
+                box1.style.backgroundColor = "purple"
+            } else if(box1.style.backgroundColor === "purple"){
+                box1.style.backgroundColor = "red"
+            }
+        }
+
+        //Respota do professor
+        let colorArray = ["blue", "green","yellow","purple", "red"]
+        let i = 0;
+        function div1Click2v(box11){
+            box11.style.backgroundColor = colorArray[i++ % colorArray.length]
+        } // nunca que eu pensaria nessa resposta, kkk o resto. Não sei se eu sei conseguiria chegar nessa resposta. Pelo o que eu entendi, a posição sempre irá resetar para 0 quando o i for igual ao um multiplo com colorArray.length
+        // Entedi que é uma pratica comum quando você quer limitar e ciclar a lista
+        /*
+        Como ocorrer a operação:
+        0 % 5 = 0
+        1 % 5 = 1
+        2 % 5 = 2
+        4 % 5 = 3
+        4 % 5 = 4
+        5 % 5 = 0 (começa dnv)
+        6 % 5 = 1...
+        */
+
+        //EXC 2
+        /*
+        Criar uma segunda div
+            300px por 400px
+            Identificador div_2
+
+        No arquivo JS
+            Criar uma função div2Mouseover
+            alterar o atributo onmouseover da div para direcionar para a
+            função div2Mouseover
+            Na função div2Mouseover, mudar a cor de fundo da div para
+            vermelho, azul, verde, amarelo, roxo nesta sequência a cada
+            movimento do mouse na div.
+        */
+        // Minha resposta
+        function div2Mouseover(box2){
+            if(box2.style.backgroundColor === "" || box2.style.backgroundColor === "red"){
+                box2.style.backgroundColor = "blue"
+            } else if(box2.style.backgroundColor === "blue"){
+                box2.style.backgroundColor = "green"
+            } else if(box2.style.backgroundColor === "green"){
+                box2.style.backgroundColor = "yellow"
+            } else if(box2.style.backgroundColor === "yellow"){
+                box2.style.backgroundColor = "purple"
+            } else if(box2.style.backgroundColor === "purple"){
+                box2.style.backgroundColor = "red"
+            }
+        }
+
+        //Resposta do professor
+        colorArray = ["blue", "green","yellow","purple", "red"]
+        let cont = 0;
+        function div2Mouseover2v(box21){
+            box21.style.backgroundColor = colorArray[cont++ % colorArray.length]
+        }
+        
+
+
+        
+    </script>
+</body>
+</html>

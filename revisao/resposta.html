@@ -21,6 +21,7 @@
 
     <p id="pap3">Isso é um teste!</p>
     <button id="btn3" onclick="mudeCor(this)"">Mude a minha cor!</button>
+    <div id="square"></div>
     <script>
         /* 1)
         a) Crie um objeto chamado "aluno" a partir das variáveis abaixo.
@@ -192,6 +193,24 @@
         function mudeCor(btn){
             btn.style.color = "blue";
         }
+        //16) Crie um quadrado que muda de cor de branco pra preto ciclicamente ao mover o mouse dentor dele. Utilize %
+        let arrayCor = ["black", "white"]
+        let cont = 0;
+        let square = document.getElementById("square");
+    
+        square.addEventListener("mousemove", ()=>{
+            square.style.backgroundColor = arrayCor[cont++ % arrayCor.length]
+        })
+        //17) Qual a diferença entre os eventos "mouseenter" e "mouseover"?
+        /*
+        MOUSEENTER:
+        - Este evento é acionado quando o cursor do mouse entra em um elemento HTML.
+        - O evento é disparado apenas quando o cursor entra diretamente no elemento, não quando entra em seus filhos.
+
+        MOUSEOVER:
+        - Este evento é acionado quando o cursor do mouse entra em um elemento HTML ou em um de seus filhos.
+        - O evento é disparado quando o cursor entra em qualquer elemento filho do elemento alvo, além do próprio elemento alvo.
+        */
     </script>
 </body>
 </html>

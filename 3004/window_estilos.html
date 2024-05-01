@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+            <script>
+                // METODOS PARA WINDOW. (NAVEGADOR)
+
+                //PROMPT
+                // Nao sabia que dava pra colocar uma frase como base no prompt
+                let nomeProfessor = window.prompt("Informe o nome do professor", "Ex: Francisco")
+                console.log(nomeProfessor)
+                // testei, mas nao curti nao kkkk tem como a pessoa inputar o exemplo em si.
+
+
+                // CAIXA DE CONFIRMAÇÃO
+                //retorna true ou false
+                let confirma = confirm("Você confirma essa informação?")
+                console.log(confirma)
+
+                // CAIXA DE ALERTA
+                alert("Isso é um alerta")
+
+                // MODIFICANDO ESTILOS.
+                let title = document.getElementsByTagName("h1").item(0);
+                title.style.textDecoration = "underline"
+                title.style.color = "red";
+
+            </script>
+</body>
+
+</html>
