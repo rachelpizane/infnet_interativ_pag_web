@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f1f1;
+            display: grid;
+            place-content: center center;
+            min-height: 100vh;
+        }
+        
+        form {
+            max-width: 400px;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: .5rem;
+            box-shadow: 6px 6px 1px grey;
+            display: grid;
+            gap: 1rem;
+            box-sizing:border-box
+        }
+
+
+        fieldset div {
+            margin: .75rem 0;
+        }
+        
+
+        textarea {
+            resize: none;
+            display: block;
+        }
+    
+        #show-password{
+            display: inline-block;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        /* 
+        ::-webkit-outer/inner-spin-button: Pseudo elementos que selecionam uma parte especifica do elemento HTML. No nosso caso, são os botãozinhos (spinners). Além disso, utilizamos dos pseudos, pq os spinners possuem duas partes, uma externa e outra interna.
+
+        -webkit: Indica que o pseudo-elementos é especifico para os navagedados que possui o moto de renderização WebKit (Google, Safari, Edge)
+        -outer: Indica que referente a parte externa do botãozinho
+        -inner: Indica que referente a parte interna do botãozinho
+        -spin-button: Indica que é referente aos spinners do elementos
+
+        Propriedades:
+        - webkit-appearance: none -> Retira a aparencia padrão no elemento para os navegadores que utilizam o motor webkit.
+        - margin:0, retira qualquer margem existente do elemento. Por mais que não seja visivel a mudança, é de boa prática colocá-la.
+        */
+
+    </style>
+</head>
+<body>
+    <form> 
+        <!--
+            - Inicia um formulário 
+            - Agrupa campos de entra e botões que permitem o usuário enviar dados para um servidor para processamento.
+            - A tag serve como container para diversos elementos de formulário, que coleta os dados de todos os elementos de entrada e envia para o servidor, quanto pontuado.
+            - Quando o usuario interage com os elementos de formulário, o proprio navegador guarda essar dados temporariamente.
+            - Ao clicar no botão de envio (input type[submit]), o navegador manda os dados guardado para o URL definida no atributo "action".
+
+            ATRIBUTOS:
+                -Action: Define o URL para onde os dados do formulário serão enviados. [ESTUDAR FUTURAMENTE]
+                -Method: Especifica o método HTTP a ser usado ao enviar os dados do formulário. Os valores comuns são GET e POST. [ESTUDAR FUTURAMENTE]
+                - Enctype: Especificaçã o tipo de codificação usado para enviar os dados do formulário. Normalmente utilizado quando um formulário faz upload de arquivos. [ESTUDAR FUTURAMENTE]
+
+           DUVIDAS: 
+            - E se nao nao utilizar a tag form? O que acontece com os elementos? Os elementos serão renderizados, mas não sera possivel armazenar e coletar os dados automaticamente. Nessa caso teria que ser feito manualmente pelo Javascript
+
+            - Então quer dizer que o proprio navegador guarda e envia, nao preciso utilizar javascript para isso? Exatamente
+        -->
+        <!-- 
+        Sobre INPUT GERAL:
+        - seu objetivo é permitir que o usuário entre com os dados em diferentes formas, como textos, numeros, senhas, etc.
+        - É um campo de entrada
+        ATRIBUTOS:
+        Type:
+            - Define o tipo de controle de dados a ser exibido, dependendo do valor, o navegador irá renderiza-lo de formas diferentes
+        Name:
+            - Especifica o nome do campo de entrada. Essa informação será utilizado como chave para enviar os dados para o servidor.
+        Value:
+            - Define o valor inicial do campo de entrada.
+            - O dado do usuario é inserido nesse valor, contudo, você também pode definir um valor inicial
+        Placeholder: 
+            - Fornece um texto descritivo que aparece dendo do campo de entrada, quando ele está vazio.
+        Required:
+        - Atributo sem valor
+        - Indica que o campo é obrigatório.
+        - Ele só funciona se o botão de envio for do tipo "submit". Pois ao clicar nele, o navegador informará queo o campo deve ser preenchido.
+        - ELe não é levado em consideração se o botão for do tipo "button"
+        MaxLength
+            - Define o numero maximo de caracteres. O padrão é 20.
+        Size:
+            - Define a largura do campo de entrada em caracteres visíveis.
+        Pattern: ??
+        Readonly:
+            - Indicia que o campo nao pode ser modificado, serve somente para leitura.
+            - Mas caso seja definido um valor pelo codigo, ele será enviado com o formulário.
+        Disabled:
+            - Desabilita o campo de entrada.
+            - O usuário não pode intereagir e o caso tenha um valor inicial, ele não será enviado ao servidor.
+            - Muito utilizado no Drp and Down, na opção "Selecione uma opção"
+        Autofocus:
+            - Define que o campo de entrada deve ser focado automaticamente quando a pagina é carregada
+        -->
+        <fieldset>
+            <!-- 
+                - Container que agrupa elementos de um formulario de um mesmo assunto. 
+                - E como se você dividisse seu formulario em seções
+            -->
+           <legend>Informações Pessoais</legend> 
+           <!-- 
+                - Utilizado para fornecer uma legenda ou titulo para o conteudo da fieldset.
+                "Ok você definiu uma fieldset, mais para que? Qual seria o nome dessa seção?"
+                - Ajuda a descrever o proposito dos campos agrupados.
+                - O recomendado é que sempre que utilizar o fieldset, que utilize a legend.
+            -->
+           <div>
+               <label for="nome">Nome: </label>
+               <!-- 
+                - Tag label utilizada para associar um texto descritivo a um elemento de um formulário
+                -É como se fosse o título de um input 
+                - Com atributo for, conseguimos asssociar a um input especifico. Utilizamos o valor do ID do input como valor do "for" da tag label.
+                - Ele também facilita a navegação para usuários que utilizam leitores de tela, contribuindo para a acessibilidade so site.
+                -->
+               <input type="text" id="nome" size="30" maxlength="25" placeholder="Informe o seu nome" autofocus> 
+               <!-- 
+                Type: Text
+                Permite que o usuário possa digitar livremente. 
+                -->
+           </div>
+           <div>
+                <label for="email">E-mail: </label>
+                <input type="email" id="email" size="30" maxlength="25" placeholder="Informe o seu e-mail" required>
+                <!-- 
+                Type: email
+                Parecido com o text, mas com algumas validações incluidas. 
+                    - Valida o formato: A entrada precisa ter um formato de email valido (ex usuario:@exemplo.com). Se o usuario não seguir esse formato, o navegador enviar uma menssgem erro.
+                    -Teclado adaptado: O teclado é exibido geralmente com simbolos frequentes de um email, como o "@" e o "."
+                 -->
+            </div>
+
+            <div>
+                <label for="password">Senha: </label>
+                <input type="password" id="password" size="30" placeholder="Informe a sua senha" required>
+                <div>
+                    <input type="checkbox" id="show-password">
+                    <label>Mostrar Senha</label>
+                </div>
+                 <!-- 
+                Type: password
+                Parecido com o text, mas o texto digitado fica oculto.
+                Você pode criar uma função no javacript para exibir a senha digitada
+                 -->
+            </div>
+
+            <div>
+                <label for="idade">Idade: </label>
+                <input type="number" id="idade" min="18" size="30" placeholder="Informe a sua idade" inputmode="numeric">
+                <!--
+                Type: number
+                
+                - Só aceita valores numericos
+                - Podemos personalizar mais incluindo os atributos:
+                        min: Valor mínimo aceitável
+                        máx: Valor maximo aceitável
+                        step: Define de quanto em quanto deve ser incrementado
+                        // Hm... O usuario ainda pode inserir o valor que desejar, ele só sera avisado depois de clicar em Submit
+                 Dúvidas:
+                    + Como eu tiro esse controle de incremento/decremento? Explicado no CSS
+                    + Como eu faço para exibir o teclado apenas com os numeros em um celular?
+                        Inclua o atributo "inputmode="numeric" na tag input[type=number]. Ele fornece uma dica ao navegador sobre o tipo de dado que o usuário deve inserir. Ele influencia o comportamento do teclado virtual. O valor numeric indica que o campo é para inserção de valores numericos.  
+                 -->            
+            </div>
+
+            <div>
+                <label for="nascimento">Data de Nascimento: </label>
+                <input type="date" id="nascimento" size="30" required>
+                <!--
+                    Type: Date
+                    - Permite que o usuario escolha uma data apartir de um calendario pop-up.
+                    - O formato da data vai depender da localidade do navegador.
+                    - Contudo, independente, o valor enviado ao servidor no formato "YYYY-MM-DD"
+                    - Navegador antigos não suportam esse tipo de dado. Nesse caso é comum usar bibliotecas javascript.
+                -->
+            </div>
+
+            <div>
+                <label for="sexo">Sexo: </label>
+                <input type="radio" name="gender" id="sexo1" value="m"><label for="sexo1">Masculino</label>
+                <input type="radio" name="gender" id="sexo2" value="f"><label for="sexo2">Feminino</label>
+                <!-- 
+                    Type: Radio
+                    - Cria botões aonde apenas uma opção pode ser escolhida.
+                    - Para o navegador saber que a opção está dentro de um grupo de opções, todos os inputs[radio] precisam ter o mesmo valor no atributo "name".
+                    - Ao selecionar uma opção, o que será enviado para o servidor é o valor que consta no atributo "value"
+                 -->
+            </div>
+        </fieldset>
+
+        <fieldset id="checkboxs">
+            <legend>Animal favorito</legend>
+            <div>
+                <input type="checkbox" name="animal" id="animal1" value="girafa"><label>Girafa</label>
+                <input type="checkbox" name="animal" id="animal2" value="leao"><label>Leão</label>
+                <input type="checkbox" name="animal" id="animal3" value="arara"><label>Arara</label>
+                <input type="checkbox" name="animal" id="animal4" value="macaco"><label>Macaco</label>
+                <input type="checkbox" name="animal" id="animal5" value="cachorro"><label>Cachorro</label>
+            </div>
+        
+            <button onclick="testarCheckbox()">Testando checkbox</button>
+            <!-- 
+                Type: checkbox
+                - Cria caixas de seleção, permitindo que mais de uma opção seja escolhida.
+                - Para o navegador saber que as opções são do mesmo conjunto, todos os inputs devem ter o atributo name com o mesmo valor.
+                - Igual ao radio, o valor que vai para o servidor é o que conta no value.
+             -->
+        </fieldset>
+        <fieldset>
+            <legend>Curso</legend>
+            <select name="select" id="select">
+                <option selected disabled value="">Selecione uma opção</option>
+                <option value="adm">Administração</option>
+                <option value="arq">Arquitetura</option>
+                <option value="prog">Programação</option>
+            </select>
+            <!-- 
+                Tag Select e Option são utilizadas para criar listas suspensas em formularios de HTML.
+                - A tag select inicia a lista suspensa, a tag option cria as opções dentro da lista.
+                - Além dos atributos padrões, temos o atributo multiple, que permite selecionar multiplas opções na lista suspensa)
+                - A tag option que for selecionada enviará ao servidor o valor do atributo value, assim com o radio e o checkbox.
+                - Se o value não for definido, por padrão o navegador utilizado o o que for escrito no conteudo da tag.
+                - O atributo selected na tag option faz com que a opção esteja selecionada quando a pagina é carregada.
+
+             -->
+        </fieldset>
+
+        <fieldset>
+            <legend>Comentário</legend>
+
+            <div>
+                <label for="">Comentário:</label>
+                <textarea name="comentario" id="comentario" rows="5" cols="35" wrap="hard" onkeydown="testarValue(event)"></textarea>
+                <!-- 
+                    Tag textarea
+                    Permite que o usuario insira grande quantidade de texto, como comentários,mensagens,etc.
+                    Ele é ideal para textos longo e detalhados.
+                    - Além dos atributos padrões do input:
+                        Rows: Define o numero de linhas visiveis no campot de texto.
+                        Cols: Define o numero de linhas visiveis no campot de texto.
+                        wrap: Confesso que nao vi diferença...
+
+                 -->
+            </div>
+            <div>
+                <label for="">Resultado: </label>
+                <p id="resultado"></p>
+            </div>
+        </fieldset>
+        <div class="btns">
+            <input type="button" value="Button">
+            <!-- 
+                Type: button
+                - Cria um botão generico que nao possui um comportamento padrao. Diferente do sibmit e reset, ele não tem nenhuma ligação com os campos do formulario
+                - Normalmente utilizado para executar ações definidas no Javascript.
+             -->
+            <input type="submit">
+            <!-- 
+                Type: Submit
+                - Utilizado para criar um botão que enviar os dados formulário para o servidor especificado no action da tag form.
+                - Se nao for definido um valor no value, ele exibirá o texto padrão "Submit"
+                - É nesse momento que o navegador faz a validação dos campos, conforme especificado em cada tag como required, pattern, min, max, etc
+             -->
+            <input type="reset">
+            <!-- 
+                Type: Reset
+                - Utilizado para criar um botão que reseta todos os campos do formulario para seu valor inicial.
+                - Se nao for definido um valor no value, ele exibirá o texto padrão "Redefinir"
+             -->
+        </div>
+    </form>
+    <script>
+       
+        let btn = document.getElementById("show-password")
+        btn.addEventListener("change", ()=>{
+            let pswd = document.getElementById("password");
+            console.log(pswd)
+            
+            if(btn.checked){
+                pswd.type = "text"
+                
+            } else {
+                pswd.type = "password"
+                
+            }
+            
+        })
+
+        let radio = document.getElementById("sexo1")
+        radio.addEventListener("change", ()=>{
+            if(radio.checked){
+                alert(radio.value)
+            } 
+        });
+
+        function testarCheckbox(){
+            let checkboxs = document.getElementById("checkboxs")
+            let arraycheckbox = checkboxs.querySelectorAll("input[name='animal']:checked") 
+            
+            let animals = [];
+
+            arraycheckbox.forEach((func) => {
+                animals.push(func.value)
+           
+            });
+
+            console.log(animals.join(", "))
+        }
+
+        function testarValue(event){
+            let resultado = document.getElementById("resultado")
+            resultado.innerHTML = "";
+            if(event.key === "Enter"){
+                console.log(event.target.value)
+                resultado.textContent = event.target.value;
+            }
+        }
+        
+        
+        
+    </script>
+</body>
+</html>

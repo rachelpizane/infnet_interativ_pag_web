@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul {
+            display: inline-block;
+            border: 2px solid black;
+            border-radius: 5px;
+            min-width:200px;
+            padding: .5rem;
+            min-height: 200px;
+        }
+
+        .box{
+            display: flex;
+            gap: .5rem;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: .5rem;
+            width: fit-content;
+        }
+
+        ul{
+            list-style: none;
+        }
+
+        li{
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: .3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>
+            <ul ondragover="permitirDrop(event)" ondrop="drop(event)">
+                <li id="tarefa" draggable="true" ondragstart="drag(event)">Tarefa 1</li>
+            </ul>
+        </div>
+
+        <div>
+            <ul ondragover="permitirDrop(event)" ondrop="drop(event)">
+            </ul>
+        </div>
+    </div>
+    <script>
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id); 
+            console.log(ev)
+            //.dataTransfer: Abre a caixa para guardar os dados
+            //.setData(): Define o que sera guardado na caixa. 
+        }
+
+        function permitirDrop(ev){
+            ev.preventDefault(); //previne comportamento padrão do elemento, que é não aceitar elementos arrastáveis.
+        }
+
+        function drop(ev){
+            ev.preventDefault(); //previne comportamento padrão do elemento, que é não ser solto em outro elemento.
+            let id = ev.dataTransfer.getData("text"); // recupera dado armarzenado(o id "tarefa"), e armezana em uma variável.
+            ev.target.appendChild(document.getElementById(id));
+            // ev.target : Acessa o elemento da onde o evento está sendo disparado (tag ul)
+            //. appendChild (anexa o elemento a tag ul)
+            // document.getElementById(id): Acessa o elemento anexado pelo seu id,
+        }
+
+    </script>
+    <!-- 
+        1º: Fazer com que o elemento que será arrastado seja arrastável:
+            Inclua o atributo "draggable="true". 
+            Em linguagem natural: "Faça com o que o elemento sejá arrastável"
+
+        2º: Definir o que será feito com elemento arrastável:
+            2.1 - Iremos armazenar os dados que serão transferidos e para isso acessamos o objeto "dataTransfer". Que basicamente prepara um espaço para guardar algumas informações sobre o que estamos arrastando.
+            Analogia: "Vamos começar a arrastar e precisamos de um lugar para guardar informações sobre o que estamos arrastando"
+
+            2.2 - Depois disso iremos definir qual dado estamos guardando exatamente com o método setData() que aceita dois argumentos: 
+                - O primeiro informa qual tipo de dado é, no nosso caso é um texto simples, então seria "text".
+                - O segundo informa o que exatamente estamos guardando, que no caso é o id do elemento que está sendo arrastado
+                - LN: "Vamos armazenar um dado do tipo 'text' e o valor que estamos armazenando é o ID do elemento que está sendo arrastado."
+        
+        3º Permitir que o elemento arrastavel seja solto no local definido (zona de soltura).
+            Precisamos sinalizar que o local aceita elementos arrastáveis.
+             - Coloque o atributo ondragover no local;
+             - Como valor, crie uma função que dispare o método .preventDefault() no evento.
+                + Esse método tem como objetivo impedir o comportamento padrão do evento (não aceitar elementos arrastáveis.)
+
+        4º Ao soltar, anexar o elemento arrastável no local definido.
+            O evento "drop" é disparado quando o elemento arrastável é solto na zona de soltura.
+                - No valor deste o evento, iniciaremos na função o métdo preventDefault(), que nessa caso permitr que o elemento seja solto em outro local. 
+                - Depois criamos uma váriavel que irá receber o dado armezano anteriormente, que é o ID. Aqui utilizaremos o método getData(), que recupera o dado que foi guardado.
+                - Por fim iremos anexar o elemento arrastável na zona de soltura, pelo metodo "AppendChild", acessando o ID com a variável.
+                ** ev.target acessa o elemento aonde se encontra o evento. 
+
+        (Fiquei na duvida como o evento drop tem acesso ao dado armazenado no evento dragstart, mas pelo o que eu entendi, o próprio navegador permiti essa troca de informação entre os eventos.)
+    -->
+</body>
+</html>
