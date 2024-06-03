@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formulario2v-style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <h1>Formulário</h1>
+
+        <fieldset>
+            <div>
+                <label>País: </label>
+                <input type="text" id="pais" placeholder="Informe o nome do país">
+            </div>
+
+            <div>
+                <label>Cor principal da bandeira: </label>
+                <input type="text" id="corBandeira" placeholder="Informe a cor principal da bandeira">
+            </div>
+
+            <div>
+                <label>Descrição do país: </label>
+                <textarea id="descricaoPais" placeholder="Descreva o país" rows="10"></textarea>
+            </div>
+
+            <div>
+                <label>Continentes: </label>
+                <select id="continente">
+                    <option selected disabled>Escolha um continente</option>
+                    <option>América</option>
+                    <option>África</option>
+                    <option>Europa</option>
+                    <option>Ásia</option>
+                    <option>Oceania</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <div>
+            <input type="button" id="botao" value="Enviar">
+        </div>
+    </form>
+</body>
+
+</html>
