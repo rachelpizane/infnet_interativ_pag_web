@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .riscado{
+        text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <ul id='food'>
+        <li class='fruit'><span>1</span>Apple</li>
+        <li class='fruit'><span>2</span>Banana</li>
+        <li class='veg'><span>3</span>Carrot</li>
+    </ul>
+
+    <p>Minha lista de afazeres</p>
+    <script>
+        let food = document.getElementById("food");
+        console.log(food.children)
+        console.log(food.children.veg)
+
+        food.innerHTML = food.innerHTML + "<li>Pera</li>"
+        
+        let uva = document.createElement("li")
+        uva.innerHTML = "Uva"
+        food.appendChild(uva)
+        // o metodo appendChild adiciona o elemento com o ultimo filho da arvore. 
+        
+        // Outra forma de criar um novo elemento
+        const brocolis = document.createElement("li");
+        const text = document.createTextNode("Brocolis")
+        brocolis.appendChild(text)
+        food.appendChild(brocolis)
+        // não conheço o metodo . createTextNode.
+
+        
+        // insertBefore() - Coloca o elemento em outro lugar dentro do pai. Ele pega um filho como referente e coloca antes dele.
+        const veg = document.getElementsByClassName("veg").item(0);
+        food.insertBefore(brocolis, veg)
+
+        // Removendo um elemento.
+        const banana = document.getElementsByClassName("fruit").item(1);
+        banana.remove()
+
+        // Substituindo um elemento.
+        const apple = document.getElementsByClassName("fruit").item(0);
+        const lemon = document.createElement('li')
+        lemon.innerHTML = "Limão"
+        // food.replaceChild(apple,lemon) // não funcionou??
+
+        // Acessar atributos
+        //hm.... isso é interesse pois é bom para colocar o serAtribute nas condicionais. 
+        // Testar cada metodo.
+        // EXC 7:
+
+        let body = document.body;
+        let list = document.createElement("ul");
+        body.appendChild(list)
+
+        function adicionar(textItem){
+            let item = document.createElement("li");
+            item.innerText = textItem
+            list.appendChild(item)
+        }
+
+        function riscar(item){
+            item.classList.add("riscado")
+        }
+
+        // Fazer como se fosse uma lista ordenada e o riscar será pelo numero.
+
+    </script>
+</body>
+</html>

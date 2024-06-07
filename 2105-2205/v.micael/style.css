@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.principal{
+  display: grid;
+  width:100%;
+  margin:0 auto;
+  align-content: center;
+}
+body {
+  background:gray;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  color:white;
+  height:100%;
+  text-align:center;
+  font-size:18px;
+}
+
+li {
+  float:left;
+  margin: 0 10px 10px 0;
+  list-style:none;
+  width:35px;
+  height:30px;
+  padding-top:10px;
+  background:white;
+  color:gray;
+  cursor:pointer;
+  border: solid 1px white;
+}
+li:hover{
+  background:gray;
+  border: solid 1px white;
+  color:white;
+}
+#minha_palavra {
+  margin: 0;
+  display: block;
+  padding: 0;
+
+}
+
+#minha_palavra li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  display: inline-block;
+  padding: 0 10px;
+  font-size:1.6em;
+}
+
+.letraEscolhida {
+  background-color: white;
+  margin: 0 .2rem;
+  padding: 0 .5rem;
+  color: black;
+}

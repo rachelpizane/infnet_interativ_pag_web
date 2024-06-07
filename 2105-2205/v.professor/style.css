@@ -1,0 +1,79 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+.principal{
+  display: grid;
+  width:100%;
+  margin:0 auto;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: auto;
+}
+body {
+  background:gray;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  color:white;
+  height:100%;
+  text-align:center;
+  font-size:18px;
+}
+#div_letras {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#div_letras ul {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#div_letras li {
+  margin: 0 10px 10px 0;
+  list-style:none;
+  width:35px;
+  height:30px;
+  padding-top:10px;
+  background:white;
+  color:gray;
+  cursor:pointer;
+  border: solid 1px white;
+}
+#div_letras li:hover{
+  background:gray;
+  border: solid 1px white;
+  color:white;
+}
+#minha_palavra {
+  margin: 0;
+  display: block;
+  padding: 0;
+}
+#minha_palavra li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  display: inline-block;
+  padding: 0 10px;
+  font-size:1.6em;
+}
+.desativar {
+  opacity:0.4;
+}
+.desativar:hover{
+  opacity:0.8;
+}
+#div_stickman{
+  display: none;
+}
+#div_img_lose {
+  display: none;
+}
+#div_img_win {
+   display: none;
+}
+

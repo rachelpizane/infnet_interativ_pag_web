@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="principal">
+     <h1>Jogo da Forca</h1>
+      <p>Utilize as letras abaixo para tentar descobrir qual é a palavra secreta</p>
+  </div>
+  <div class="principal">
+      <div id="div_letras">
+      </div>  
+      <p id="p_categoria"></p>
+      <div id="div_tabuleiro">
+      </div>
+      <p id="p_vidas"></p>
+      <p id="p_dica">Dica:?</p>
+    <div id="div_stickman">
+       <canvas id="c_stickman">Este texto será exibido se o seu navegador não suporta canvas HTML5 </canvas>
+    </div>
+    <div id="div_img_lose">
+      <img id="img_lose" src="img/stick-man-dynamite.gif" />
+    </div>
+    <div id="div_img_win">
+      <img id="img_win" src="img/troll-stick-figure.gif" />
+    </div>
+      <div class="controle">
+        <button id="botao_dica">Dica</button>
+        <button id="botao_reiniciar">Jogar Novamente</button>
+      </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
