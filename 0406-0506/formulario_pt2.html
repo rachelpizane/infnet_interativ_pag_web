@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário | PT2</title>
+</head>
+
+<body>
+    <form>
+        <input type="color" id="color">
+        <!-- 
+        Type: Color
+        Personaliza para pegar uma cor em seu valor hexadecimal 
+        Ele não é suportado pelo o IE 11
+        -->
+        <input type="datetime-local" id="dateLocal">
+        <!-- 
+        Type: datetime-Local
+        - Permite que o usuario insira uma data e uma hora. Seu retorno sempre será: yyyy-mm-aaThh:mm ("T" seria um diviso entre a data e a hora)
+         -->
+
+        <input type="text" inputmode="numeric" required>
+        <!-- 
+         Sobre o atributo inputmode:
+         - Ele indica ao navegador qual teclado virtual deve  ser usado para o preenchimento do input.
+         - Normalmente o proprio "type" já indica ao navegador qual é o teclado esperado.
+         - Principais valores:
+            text - Teclado padrão de texto
+            none - Não exibe nenhum teclado virtual
+            numeric -  Teclado só com números
+            email - Teclado de texto padrão, mas com simbolos de e-mail, como o "@" e ".com".
+            tel - Teclado de numeros com simbolos de telefone, como "*" e "#".
+            Url - Teclado de texto padrão, mas com simbolos de url, como o "/".
+          -->
+        <input type="image" src="img_submit.gif" alt="submit" width="32" id="submitImage">
+
+        <input type="submit" src="img_submit.gif" alt="submit" width="32"> <!-- Não funciona -->
+        <!-- 
+        Type: Image
+        - Utilizado para criar um botão de envio do formulario ao servidor, mas representado por uma imagem.
+        - É igual ao type="submit", mas com uma imagem, complementando com os atributos src, alt, width e height.
+         -->
+        <input type="file" id="file" accept="image/*, .pdf" multiple>
+        <!-- 
+         Type: File
+         - Permite que o usuario envie um arquivo de seu dispositivo
+         - Atributos:
+            multiple: Permite selecionar multiplos arquivos
+            accept: 
+                + Especifica o tipo de arquivo que o servidor aceita
+                + Pode ser mais de um arquivo
+                + Por exemplo:
+                    image/* -> Aceita qualquer tipo de imagem
+                    .png -> Aceita apenas arquivos PNGs
+                    (Os documentos não aceitos nem aparecem no meu dispositivo para selecioná-los)
+         - Por motivo de segurança, os navegadores não permitem acesso direto ao conteudo do arquivo. Você pode usar APIs de leitura de arquivos como FileReader para ler o conteúdo dos arquivos, se necessário.
+          -->
+    </form>
+    <script>
+        let color = document.getElementById("color")
+        color.onchange = function () {
+            console.log(color.value) //Ex: #ffffff
+        }
+
+        document.getElementById("dateLocal").onchange = function () {
+            console.log(this.value) // Ex: 2024-06-25T14:49
+        }
+
+        document.getElementById("file").onchange = function () {
+            console.log(this.files) // A propriedade utilizada para visualizar os arquivos é ".files" e ele retorna uma lista de objetos.
+            // Em cada objeto, podemos acessar:
+            console.log(this.files[0].name)
+            console.log(this.files[0].size)
+            console.log(this.files[0].type)
+            console.log(new Date(this.files[0].lastModified))
+        }
+    </script>
+</body>
+
+</html>
