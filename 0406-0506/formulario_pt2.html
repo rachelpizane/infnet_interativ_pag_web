@@ -57,6 +57,54 @@
                     (Os documentos não aceitos nem aparecem no meu dispositivo para selecioná-los)
          - Por motivo de segurança, os navegadores não permitem acesso direto ao conteudo do arquivo. Você pode usar APIs de leitura de arquivos como FileReader para ler o conteúdo dos arquivos, se necessário.
           -->
+         <input type="hidden" id="hidden">
+
+         <input type="submit" value="Envie" id="botao">
+         
+         <!-- 
+         Type: Hidden
+         - Ela é utilizada para incluir informações ocultas em um formulario HTML. Esse dados não visiveis e nem modificaveis pelo usuário na tela, mas quando ele clicar para enviar os dados os servidor, os dados ocultos também irão. 
+         - Contudo, mesmo sendo "ocultos" o usuário ainda consegue alterá-lo pelas ferramentas de desenvolvedor do navegador. - Com isso, não é indicado utiliza-la para manipular dados sensiveis e confidenciais que não possam ser validados ou verificados no servidor.
+          -->
+         
+          <input type="month" id="month"  min="2024-01" max="2024-12">
+          <!-- 
+          Type: Month
+          - Permite que o usuário selecione um mês e um ano.
+          - Normalmente utilizado para puxar relatórios mensais.
+          - Ele retorna no formato: yyyy-mm
+          - Permite o uso os atributos de max e min.
+          - Os navegadores que não suportam essa opção irão substitui-lo para um input-text, o que pode dar problemas na parte de validação. Se realmente for necessário registrar essa informação, uma sugestão é utilizar selects, um com o mês e o outro com o ano.
+           -->
+          <input type="range" id="range">
+
+          <!-- 
+          Type: Range
+          - Permite que o usuario selecione um valor dentro de um intervalo definido, normalmente por uma barra deslizante. (Ex: Barra de volume, Brilho da Tela)
+          - Seu uso é indicado quando o valor em si não importa.
+            - EX: Eu não ligo de o volume está no 59, eu só quero que fique mais alto do que a media.)
+          - Por padrão os valores da barra estão entre 0 a 100, mas é possivel muda-los com atributo max e min.
+           -->
+
+           <input type="search">
+           <!-- 
+           Type: Search
+           - Ele é usado para criar um capo de entrada de texto especificamente destilado para buscas.
+           - Ele funciona praticamente de forma identica ao text. A unica coisa que faz é indicar ao navegador que é uma barra de pesquisa. Além disso, ela também possui uma estilização especifica para esse tipo.
+           - Alguns navegadores podem oferecer suporte para sugestões de pesquisa ou histórico de pesquisas anteriores em campos do tipo search.
+            -->
+           <div>
+            <label>Telefone:</label>
+            <p style="font-size: small;">Formato esperado: (xx) xxxxx-xxxx</p>
+        <input type="tel" id="tel" size="30" placeholder="Informe um telefone" pattern="\(\d{2}\) \d{5}-\d{4}">
+           </div>
+           <!-- 
+           Type: Tel
+           - Permite que o usuario insira seu telefone
+           - Ele é identico ao text, contudo sua vantagem é que o navegador retorna um teclado virtual para o telefone.
+           - Pelo desktop, a tag não impõe restrições sobre os caracteres que podem ser inseridos pelo teclado. Por isso normalmente ela é complementada com um pattern para validar o valor.
+            -->
+           <input type="time" id="time">
     </form>
     <script>
         let color = document.getElementById("color")
@@ -76,6 +124,24 @@
             console.log(this.files[0].type)
             console.log(new Date(this.files[0].lastModified))
         }
+
+        document.getElementById("botao").onclick = function (){
+            let teste = document.getElementById("hidden").value;
+            alert(teste) // Testei se é possivel mudar o valor pelo inspecionar, e realmente é possivel!
+        }
+
+        document.getElementById("month").onchange = function () {
+            alert(this.value) // Ex: 2024-06
+        }
+
+        document.getElementById("range").onchange = function () {
+            alert(this.value) // Ex: 59
+        }
+
+        document.getElementById("time").onchange = function () {
+            alert(this.value) // Ex: 18:32 hh:mm 
+        }
+
     </script>
 </body>
 
