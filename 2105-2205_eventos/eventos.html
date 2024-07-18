@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos</title>
+  <style>
+    .box {
+      display: grid;
+      width: 150px;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+   <!-- 
+    Método .addEventListener
+    - É o método mais recomendado para adicionar eventos a elementos.
+      * Não inclua eventos diretos no HTML(1) e evite acessar os eventos via propriedades do elemento (2):
+        > (1)..onclick="mudarCor()"...
+        > (2)btn.onclick = mudarCor(){...}
+    - Anexa um manipulador de eventos (event handler) em um elemento que irá reagir sempre que o evento for disparado.
+    - Event Listener "escuta" se o evento aconteceu ou não. Envet Handle é a o bloco de código que será executado em reposta a esse vento.
+    - Modemos inserir mais de um event listener em um mesmo elemento, eles occorerrão ao mesmo tempo.
+    - Sintaxe: element.addEventListener(event,function, useCapture)
+    - O evento informa qual tipo de ação ativará a nossa função. Ele pode ser um do tipo clique de mouse, ao carregar a pagina, clique no teclado, etc.
+    - Principais eventos: 
+      * click
+      * load
+      * change
+      * blur
+      * keydown
+      * keyup
+      * DOMContentLoaded
+      * submit
+    
+    - Alguns eventos por grupo:
+      * Mouse Events: click, contextmenu, dblclick, mmousedown, mouseenter, mouseleave, mousemove, mouseout, mouseover, mouseup;
+      * KeyBoard Events: keydown, keyup
+      * Focus Events: blur, focus, focusin, focusout
+      *OBS: Tem um mundo de eventos!
+
+
+    Objeto Evento
+    - Quando um evento é disparado, é passado automaticamente para a função de tratamento um objeto de evento
+    - O objeto de evento sempre referencia o elemento que o evento ocorreu
+    - Você pode nomear o parametro para recebe-lo de qualquer forma, mas o mais comum é por event/evt/e.
+    - Dependendo do evento, ele pode retornar um tipo de objeto diferente, com propriedades extras
+      * Por exemplo, o evento "keydown" retorna um objeto de evento chamado "KeyboardEvent", que possui a propriedade .key, que retorna qual teclado foi pressionado.
+    - Principais propriedades/métodos
+      * target
+      * key
+      * type
+      * clientX/ clienteY
+      *.preventDefault()
+        > Previne que os comprtamentos padrões de um evento occoram
+     -->
+        <div class="box">   
+          <input id="input" type="text" placeholder="Testando eventos de teclado">
+          <button id="btn">Testanto evento de click</button>
+        </div>
+    
+    <script>
+      /*CLICK
+      Dispara quando o elemento é clicado*/
+      document.getElementById("btn").addEventListener("click", function(e){
+        
+        alert("Hello World!")
+        console.log(e) // Retorna o objeto PointerEvent
+      })
+
+      /* KEYDOWN
+      Dispara quando o elemento é pressionado*/
+      document.getElementById("input").addEventListener("keydown", function(e){
+        console.log(e) // Retorna o objeto KeyboardEvent
+        console.log(e.key) // a
+      })
+
+      /*KEYUP
+      Dispara quando a tecla é liberada*/
+      document.getElementById("input").addEventListener("keyup", function(e){
+        console.log(e.code) // keyA
+      })
+
+      //Que tipo de objeto de evento eles retornam?
+      /*CHANGE */
+      /*INPUT (+target)*/ 
+      /*BLUR (+type)*/ 
+      /*ONLOAD vs DOMContentLoaded*/ 
+      /*CONTEXTMENU (+ clientX/Y) */ 
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário | PT3</title>
+</head>
+<body>
+  <h1>Formulário</h1>
+  <form id="form" action="cadastro.php" method="post">
+  <!-- 
+    action -> Especifica para onde será enviado os dados quando o formulario for enviado.
+    method -> Especifica que tipo de método HTTP será usado quando for enviar os dados do formulario.
+    Valores:
+      POST: Os dados são enviados no corpo da requisição http. Os dados não são visiveis logo de cara, mas é possivel identificá-los a ferramenta de desenvolvedor do navagedor.
+      GET: Utilize quando os dados não forem sensíveis, pois eles serão visiveis na barra do navegador. O tamanho é limitado pela capacidade da URL
+     -->
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" placeholder="Informe o seu nome" required>
+    </div>
+
+    <div>
+      <label for="peso">Peso:</label>
+      <input type="number" name="peso" id="peso" placeholder="Informe o seu peso" min="0" required>
+    </div>
+
+    <div>
+      <label for="profissao">Profissao</label>
+      <input type="text" name="profissao" id="profissao" list="profissoes" required> <!--Acessando a lista profissoes -->
+
+      <datalist id="profissoes">
+        <option value="estudante">
+        <option value="programador(a)">
+        <option value="aposentado(a)">
+      </datalist>
+      <!-- 
+      - A tag datalist crie uma lista de opções recomendadas de autocomplete para um input. 
+      - Para utiliza-la incluimos o atributo "list" com o valor com o mesmo valor do id que consta na tag datalist
+       -->
+    </div>
+
+    <div>
+      <label for="satisfacao">Nível da Satisfação</label>
+      <input type="range" name="satisfacao" id="satisfacao" list="rangeSatisfacao" max="10" step="5"> <!--Acessando a lista rangeSatisfacao -->
+
+      <datalist id="rangeSatisfacao">
+        <option value="0"></option>
+        <option value="5"></option>
+        <option value="10"></option>
+      </datalist>
+    </div>
+
+    <input type="submit" value="Submit">
+    <script>
+      document.getElementById("form").addEventListener("submit", function(event){
+        event.preventDefault(); // Impede que os comportamentos padrões do evento ocorra (enviar dados para o servidor e recarregar a pagina)
+        alert("Formulário enviado!")
+      })
+      /*
+      Evento Submit
+      - O evento deve ser acionado no proprio formulario.
+      - É disparado quando submetemos um formulario que está validado e antes de enviar os dados para o servidor
+        * Por exemplo, se o formulario possuir um campo com atributo "required", ele não disparará o evento até o campo ser validado.
+      - Ele ocorre:
+        * quando clicamos no botão de input tipo submit
+        * quando clicamos no "Enter" enquanto estamos editando um campo
+      - Comportamento padrão
+        * Enviar dados ao servidor
+        * Recarregar a pagina
+      */
+
+    </script>
+  </form>
+</body>
+</html>

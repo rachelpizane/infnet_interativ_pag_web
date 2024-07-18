@@ -65,13 +65,13 @@
             - Inicia um formulário 
             - Agrupa campos de entra e botões que permitem o usuário enviar dados para um servidor para processamento.
             - A tag serve como container para diversos elementos de formulário, que coleta os dados de todos os elementos de entrada e envia para o servidor, quanto pontuado.
-            - Quando o usuario interage com os elementos de formulário, o proprio navegador guarda essar dados temporariamente.
+            - Quando o usuario interage com os elementos de formulário, o proprio navegador guarda esses dados temporariamente.
             - Ao clicar no botão de envio (input type[submit]), o navegador manda os dados guardado para o URL definida no atributo "action".
 
             ATRIBUTOS:
                 -Action: Define o URL para onde os dados do formulário serão enviados. [ESTUDAR FUTURAMENTE]
                 -Method: Especifica o método HTTP a ser usado ao enviar os dados do formulário. Os valores comuns são GET e POST. [ESTUDAR FUTURAMENTE]
-                - Enctype: Especificaçã o tipo de codificação usado para enviar os dados do formulário. Normalmente utilizado quando um formulário faz upload de arquivos. [ESTUDAR FUTURAMENTE]
+                - Enctype: Especifica o tipo de codificação usado para enviar os dados do formulário. Normalmente utilizado quando um formulário faz upload de arquivos. [ESTUDAR FUTURAMENTE]
 
            DUVIDAS: 
             - E se nao nao utilizar a tag form? O que acontece com os elementos? Os elementos serão renderizados, mas não sera possivel armazenar e coletar os dados automaticamente. Nessa caso teria que ser feito manualmente pelo Javascript
@@ -238,7 +238,7 @@
                 - A tag select inicia a lista suspensa, a tag option cria as opções dentro da lista.
                 - Além dos atributos padrões, temos o atributo multiple, que permite selecionar multiplas opções na lista suspensa)
                 - A tag option que for selecionada enviará ao servidor o valor do atributo value, assim com o radio e o checkbox.
-                - Se o value não for definido, por padrão o navegador utilizado o o que for escrito no conteudo da tag.
+                - Se o value não for definido, por padrão o navegador utiliza o o que for escrito no conteudo da tag.
                 - O atributo selected na tag option faz com que a opção esteja selecionada quando a pagina é carregada.
 
              -->
@@ -334,9 +334,6 @@
                 resultado.textContent = event.target.value;
             }
         }
-        
-        
-        
     </script>
 </body>
 </html>
