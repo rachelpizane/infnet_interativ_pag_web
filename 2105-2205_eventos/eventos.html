@@ -5,10 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eventos</title>
   <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
     .box {
       display: grid;
-      width: 150px;
+      width: 200px;
       gap: 1rem;
+      margin: 1rem;
+      border: 1px dashed red;
+      padding: .5rem;
+    }
+    .error {
+      color: red;
+      font-size: .9rem;
+    }
+    .display {
+      display: none;
     }
   </style>
 </head>
@@ -55,39 +70,144 @@
       *.preventDefault()
         > Previne que os comprtamentos padrões de um evento occoram
      -->
-        <div class="box">   
+        <div class="box">  
+          <h2>Keydown e Keyup</h2> 
           <input id="input" type="text" placeholder="Testando eventos de teclado">
+          <h2>Click</h2>
           <button id="btn">Testanto evento de click</button>
         </div>
-    
+
+        <div class="box">
+          <h2>Change</h2>
+          <div>
+            <input type="radio" name="animal" id="radio1" value="girafa"> Girafa
+            <input type="radio" name="animal" id="radio2" value="leao"> Leao
+          </div>
+
+          <div>
+            <input type="checkbox" name="sexo" id="checkbox1" value="f">Feminino
+            <input type="checkbox" name="sexo" id="checkbox2" value="m">Masculino
+          </div>
+        </div>
+
+        <div class="box">
+          <h2>Input</h2>
+          <input type="password" name="psrwd" id="senha">
+        </div>
+
+        <div class="box">
+          <h2>Blur</h2>
+          <input type="text" name="email" id="nome" class="inputborder">
+          <p id="error" class="display error"></p>
+        </div>
+
+        <div class="box">
+          <h2>Contextmenu</h2>
+          <button id="btn2">Clique aqui com o botão direito!</button>
+          <p id="texto" class="display">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, vitae? Nam quos minus a nihil neque, iure voluptatem cum esse hic iusto nobis fugiat corrupti. Saepe laborum amet unde sunt?</p>
+        </div>
+  
     <script>
       /*CLICK
       Dispara quando o elemento é clicado*/
-      document.getElementById("btn").addEventListener("click", function(e){
+      document.getElementById("btn").addEventListener("click", function(e) {
         
         alert("Hello World!")
         console.log(e) // Retorna o objeto PointerEvent
+        console.log(e.button) 
+        console.log(this) // Curiosidade: Como usei uma function completa, ele cria o "this" e retorna o proprio botão. O que não ocorreria com a arrow function
       })
 
       /* KEYDOWN
       Dispara quando o elemento é pressionado*/
       document.getElementById("input").addEventListener("keydown", function(e){
         console.log(e) // Retorna o objeto KeyboardEvent
-        console.log(e.key) // a
+        console.log(e.key) // Retorna o valor da chave pressionada. Ex. A, "", Ç, etc.. Muito comum utilizá-lo.
       })
 
       /*KEYUP
       Dispara quando a tecla é liberada*/
       document.getElementById("input").addEventListener("keyup", function(e){
-        console.log(e.code) // keyA
+        console.log(e.code) // representa uma tecla física no teclado. Esta propriedade retorna um valor que não é alterado pelo estado das teclas modificadoras; Ex: keyA, Space, Semicolon, etc. 
       })
 
       //Que tipo de objeto de evento eles retornam?
-      /*CHANGE */
-      /*INPUT (+target)*/ 
-      /*BLUR (+type)*/ 
-      /*ONLOAD vs DOMContentLoaded*/ 
+      /*CHANGE 
+      - Ele é disparado pelo os elementos input, select e textarea
+      - Ele pode ser disparado em diferentes momentos:
+        * O mais comum é quando o elemento input perde o foco , ou ao clicar no "Enter", depois do valor ser alterado
+        * Quando marca e desmarca um elemento checkbox
+        * Quando marca um elemento radio (Não ativa quando desmarca
+        * Quando seleciona uma opção da tag select*/
+
+      for(let i = 1; i <= 2; i++){
+        document.getElementById("radio" + i).addEventListener("change", function(e){
+        console.log(e) //Retorna Event
+      })
+        document.getElementById("checkbox" + i).addEventListener("change", function(e){
+        console.log(e.target.value) // Acessa o elemento e retorna o seu valor;
+        })
+      }
+  
+      document.getElementById("input").addEventListener("change", function(e){
+        console.log(e.target.value) // Dispra quando perde o focus ou clica em "Enter"
+      })
+
+      /*INPUT (+target)
+      - Ele é disparado pelo os elementos input, select e textarea
+      - Ativado a cada momento que o valor é alterado
+        * Ou seja, adicionou ou removeu um caracter? Evento ativado!
+      - Diferente do "change", o elemeneto não precisa perder o foco para ser ativado*/ 
+      document.getElementById("senha").addEventListener("input", e => {
+        console.log(e) //retorna inputEvent
+        console.log(e.target.value) // Retorna o valor atual do elemento
+
+        // Algumas propriedades do evento tipo inputEvent:
+        console.log(e.data) /*Retorna o caracter atual inserido. Se a alterar uma um caracter deletado, ele retorna "null*/
+
+        console.log(e.inputType) /*Retorna o tipo de mudança feita no conteudo
+        - Os mais comuns são:
+          * insertText:Insere um texto simples
+          * deleteContentBackward: Deleta um texto simples
+          * insertFromPaste: Cola um conteudo */ 
+        
+      });
+
+      /*BLUR
+      - Disparado quando um elemento perde o foco
+      - Diferente do change e do input, o evento é ativado indepedente do valor do elemento ter sido alterado ou não.
+      - Ele não pode ser cancelado
+        * Descobri na pratica, horrivel kk
+      - Utilizado para validação de entrada e formatação de dados*/ 
+      document.getElementById('nome').addEventListener('blur', function(e) {
+        console.log(e) // Retorna focusEvent
+        let error = document.getElementById("error")
+        if(e.target.value.trim() == ""){
+          error.classList.toggle("display")
+          error.innerText = "Preencha o campo"
+        } else {
+          error.classList.toggle("display")
+        }
+      });
       /*CONTEXTMENU (+ clientX/Y) */ 
+      document.getElementById("btn2").addEventListener("contextmenu", function(e){
+        let texto = document.getElementById("texto")
+        console.log(e)
+        texto.classList.toggle("display")
+        // Algumas propriedades do evento tipo pointerEvent: 
+        console.log(e.altKey) // Retorna um valor booleano. True se o mouse tiver clicado com o alt pressionado.
+        console.log(e.button) 
+        /* Retorna qual botão do mouse foi pressionado 
+        - 0 : Left button / Main button
+        - 1 : Wheel or middle button (if present)
+        - 2 : Right button / Secundary button */
+        console.log(e.clientX) // Retorna a coordenada x (horizontal) do ponteiro do mouse (relativo a janela)
+        console.log(e.clientY) // Retorna a coordenada Y (vertical) do ponteiro do mouse (relativo a janela)
+      })
+      /*ONLOAD vs DOMContentLoaded*/ 
+      document.addEventListener("click", (e)=> {
+        console.log(e.clientX)
+      })
 
     </script>
 </body>
