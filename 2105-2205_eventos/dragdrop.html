@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: fit-content;
+    }
+
+    .container {
+      border: 3px solid black;
+      padding: 1rem;
+      height: 200px;
+      width: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      background-color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container1"class="container">
+
+    <div id="box1" class="box" draggable="true" ondragstart="drag(event)"></div>
+
+    <div id="box2" class="box"draggable="true" ondragstart="drag(event)"></div>
+  </div>
+
+  <div id="container2" class="container" ondragover="permitirDrop(event)" ondrop="drop(event)">
+  </div>
+  <!-- 
+  Draggable
+  - Atributo que faz com o que o elemento seja arrastável ou não.
+  - Por padrão, ele possui o valor "false". Para que possamos arrastá-lo, alteramos para "true" 
+   -->
+  <script>
+    function drag(e){ //Dispara quando eu arrasto pela primeira vez
+      console.log("elemnto acessado")
+      console.log(e) // Retorna o objeto DragEvent
+      console.log(e.target) // Retorna o elemento
+      console.log(e.dataTransfer) // retorna o objeto dataTransfer
+      console.log("\n------\n\n") 
+      e.dataTransfer.setData("text", e.target.id)
+      /*
+      .setData(format, data)
+      - Armazena temporariamente os dados no objeto dataTransfer enquanto ocorre a operação de arrastar e soltar.
+        * Pesquisei e não temos acesso ao "local" onde é armazenado, é como se fosse uma caixinha temporaria do proprio objeto dataTransfer
+      - Sintaxe:
+      * format: Ums string que especfica o formato dos dados que serão armazenado. 
+      > Na maioria das vezes sera "text"
+      * data: O conteudo que será amarzenado
+      */
+    }
+
+    function permitirDrop(e){ //Dispara enquanto o elemento o elemento arastável estiver sendo arrastado dentro da área liberada
+      e.preventDefault();
+      console.log(e) // Retorna o objeto DragEvent
+    }
+
+    function drop(e){
+      e.preventDefault();
+
+      let idElemento = e.dataTransfer.getData("text")
+
+      e.target.appendChild(document.getElementById(idElemento))
+    }
+  </script>
+</body>
+</html>
