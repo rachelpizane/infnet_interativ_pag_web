@@ -27,7 +27,7 @@
     }
   </style>
 </head>
-<body>
+<body id="body">
    <!-- 
     Método .addEventListener
     - É o método mais recomendado para adicionar eventos a elementos.
@@ -203,11 +203,39 @@
         - 2 : Right button / Secundary button */
         console.log(e.clientX) // Retorna a coordenada x (horizontal) do ponteiro do mouse (relativo a janela)
         console.log(e.clientY) // Retorna a coordenada Y (vertical) do ponteiro do mouse (relativo a janela)
-      })
-      /*ONLOAD vs DOMContentLoaded*/ 
-      document.addEventListener("click", (e)=> {
-        console.log(e.clientX)
-      })
+      });
+
+      /*LOAD vs DOMContentLoaded
+      Load 
+      - Dispara quando toda a página é carregada, incluido, as folhas de estilo, script e imagens.
+      - O evento acontece no objeto window.
+        * Objeto window representa a java ou aba do navegador em que o script está sendo executado. Ele é o objeto global para todas as funcionalidades fornecidas pelo navegador.
+      - Prática Comum: Usado para executar ações que dependem do carregamento completo da página, como remover mensagens de carregamento ou inicializar galerias de imagens.
+      
+      DOMContentLoaded
+      - Disparado quando todo o html for carregado, sem esperar as folhas de estilos, scrip e imagens.
+        * Na teoria isso significa que ele é disparado antes do load. 
+      - O evento acontece no objeto document.
+        * Document representa o DOM
+      - Existe algumas questões mais complexas sobre ordem de execução, mas não olharei isso agora.
+      - Prática Comum: É ideal para inicializar scripts de interface do usuário, validação de formulários, e outros componentes que não dependem do carregamento completo de todos os recursos.
+      
+      Observações:
+      - Eu preciso só DOM pra seguir com meu script? Então utilize o DOMContentLoaded
+      - Eu preciso de algum recurso externo, uma imagem ou CSS? Então utilize o Load
+      - A questão é que existe uma ordem de execução, se ela não for seguida corretamente pode dar algum problema, tipo um função que utiliza um elemento DOM ser executado antes mesmo do DOM ser estrturado.
+      */ 
+
+      window.addEventListener("load", (e) => {
+        console.log(e) // Retorna Event
+        console.log(e.target)
+      });
+
+      document.addEventListener("DOMContentLoaded", (e) => {
+        console.log(e) // Retorna Event
+        console.log("Testando")
+      });
+      console.log("Testando2v") //Executado antes da construção do DOM.
 
     </script>
 </body>
