@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Event</title>
+  <style>
+    body{
+      padding: .2rem;
+      margin: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .box {
+      width: 250px;
+      height: 150px;
+      border: 2px solid red;
+      margin: 1rem 0;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      padding: .2rem;
+      margin: 0px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Propriedades e métodos do MouseEvent</h1>
+
+  <div id="box1" class="box"><h2>AltKey</h2></div>
+  <div id="box2" class="box"><h2>Button</h2></div>
+  <script>
+    // Conhecendo as propriedades e métodos do objeto PointerEvent
+
+    document.getElementById("box1").addEventListener("click", e => {
+      /*altKey:
+      - Retorna um valor booleano 
+      * False: O botão ALT não foi pressionado enquanto ocorria o evento de mouse.
+      * True: O botão ALT foi pressionado enquanto ocorria o evento de mouse.*/
+      console.log(e.altKey)
+      console.log(e)
+    })
+
+    document.getElementById("box2").addEventListener("mousedown", e => {
+      console.log(e)
+      /* button:
+      - Indica qual botao do mouse foi clicado durante o evento
+      - Retorna os valores abaixo 
+        * 0: Botão principal
+        * 1: Botão de rolagem ou do meio
+        * 2: Botão auxiliar
+        * n: Se o mouse tiver mais botões, cada um corresponderá um valor.
+      OBS: Normalmente o botão principal é o esquerdo, mas vai depender da configuração do mouse do usuário.
+      */
+      console.log(`Você pressionou o botão: ${e.button}`)
+
+      /* buttons
+      - Não entendi muito bem a diferença com a propriedade button.
+      - Indica quais botões foi pressionado durante o evento
+      - Se mais de um botão, os valore são somados
+      - Exemplos de retornos:
+        * Botão principal: 1
+        * Btoão auxiliar: 2
+        * Botão de rolagem: 4
+      - Ex: Se pressionar o botão principal junto com o auxiliar, o retorno é 3.
+      */
+      console.log(e.buttons)
+    })
+  </script>
+</body>
+</html>
