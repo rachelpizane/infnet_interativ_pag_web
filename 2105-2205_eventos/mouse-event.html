@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mouse Event</title>
   <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    
     body{
-      padding: .2rem;
+      padding: .5rem 1rem;
       margin: 0px;
       font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin: 1rem 0;
     }
 
     .box {
@@ -23,15 +33,21 @@
       padding: .2rem;
       margin: 0px;
     }
+
   </style>
 </head>
 <body>
+  <p>Eventos pelo body: ClientX/Y, ScreenX/Y</p>
   <h1>Propriedades e métodos do MouseEvent</h1>
 
   <div id="box1" class="box"><h2>AltKey</h2></div>
-  <div id="box2" class="box"><h2>Button</h2></div>
+  <div id="box2" class="box"><h2>Button / buttons</h2></div>
+  <div id="box3" class="box">
+    <h2>Coordenadas</h2>
+    <p id="minibox"></p>
+  </div>
   <script>
-    // Conhecendo as propriedades e métodos do objeto PointerEvent
+    // Conhecendo as propriedades e métodos do objeto MouseEvent
 
     document.getElementById("box1").addEventListener("click", e => {
       /*altKey:
@@ -39,11 +55,9 @@
       * False: O botão ALT não foi pressionado enquanto ocorria o evento de mouse.
       * True: O botão ALT foi pressionado enquanto ocorria o evento de mouse.*/
       console.log(e.altKey)
-      console.log(e)
     })
 
     document.getElementById("box2").addEventListener("mousedown", e => {
-      console.log(e)
       /* button:
       - Indica qual botao do mouse foi clicado durante o evento
       - Retorna os valores abaixo 
@@ -67,6 +81,37 @@
       */
       console.log(e.buttons)
     })
+
+    document.body.addEventListener("mousemove", e => {
+      const box = document.getElementById("box3");
+
+      const minibox = document.getElementById("minibox");
+      /* Informações Gerais:
+      - ***X - coordenada horizontal
+      - ***Y - coordenada vertical */
+
+      const clientX = e.clientX
+      const clientY = e.clientY
+      /*clientX/Y: Retorna aS coordenadaS do pontador do mouse pela janela de visualização/navegação*/
+
+      const screenX = e.screenX
+      const screenY = e.screenY
+      /*screenX/Y
+      - Retorna aS coordenadaS do pontador do mouse pela tela do usuario
+      - Ele considera duas telas ou mais como uma só*/
+      /*pageX/Y*/
+      /*offsetX/Y*/
+      minibox.innerText = `ClientX/Y: ${clientX}, ${clientY}
+      ScreenX/Y: ${screenX}, ${screenY}
+      `;
+
+      if(clientX > 200){ //Exemplo de utilização
+        box.style.backgroundColor = "yellow"
+      } else {
+        box.style.backgroundColor = "white"
+      }
+    });
+
   </script>
 </body>
 </html>
