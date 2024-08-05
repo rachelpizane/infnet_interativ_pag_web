@@ -8,13 +8,15 @@
     *{
       margin: 0px;
       padding: 0px;
+      border:1px solid red;
     }
     
     body{
       padding: .5rem 1rem;
       margin: 0px;
       font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
+      min-height: 200vh;
+      min-width: 150vw;;
     }
 
     h1 {
@@ -26,35 +28,68 @@
       height: 150px;
       border: 2px solid red;
       margin: 1rem 0;
+      padding: .25rem;
     }
 
     h2 {
-      font-size: 1.25rem;
-      padding: .2rem;
+      font-size: 1.2rem;
+      padding: .25rem;
       margin: 0px;
     }
 
+    .box-s{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      place-items: center;
+    }
+
+    .minibox {
+      width: 80px;
+      height: 50px;
+    }
   </style>
 </head>
-<body>
-  <p>Eventos pelo body: ClientX/Y, ScreenX/Y</p>
+<body id="body">
+  <div>
+    <p>Eventos pelo body: ClientX/Y, ScreenX/Y, Page X/Y, OffsetX/Y</p>
+    <p>De um dublo click pelo documento para ver as coordenadas do clienteX/Y e Page X/Y</p>
+  </div>
+  
   <h1>Propriedades e métodos do MouseEvent</h1>
 
-  <div id="box1" class="box"><h2>AltKey</h2></div>
+  <div id="box1" class="box"><h2>AltKey / CtrlKey / ShiftKey / MetaKey</h2></div>
   <div id="box2" class="box"><h2>Button / buttons</h2></div>
   <div id="box3" class="box">
     <h2>Coordenadas</h2>
     <p id="minibox"></p>
   </div>
+
+  <div id="box4" class="box box-s">
+    <div id="minibox1" class="minibox"></div>
+    <div id="minibox2" class="minibox"></div>
+    <div id="minibox3" class="minibox"></div>
+    <div id="minibox4" class="minibox"></div>
+  </div>
   <script>
     // Conhecendo as propriedades e métodos do objeto MouseEvent
 
     document.getElementById("box1").addEventListener("click", e => {
-      /*altKey:
-      - Retorna um valor booleano 
-      * False: O botão ALT não foi pressionado enquanto ocorria o evento de mouse.
-      * True: O botão ALT foi pressionado enquanto ocorria o evento de mouse.*/
+      /*altKey: Retorna um valor booleano caso o botão ALT tenha sido pressionado ou não enquanto ocorria o evento de mouse.*/
       console.log(e.altKey)
+
+      /*ctrlKey: Retorna um valor booleano caso o botão CTRL tenha sido pressionado ou não enquanto ocorria o evento de mouse.*/
+      console.log(e.ctrlKey)
+
+       /*ctrlKey: Retorna um valor booleano caso o botão SHIFT tenha sido pressionado ou não enquanto ocorria o evento de mouse.*/
+       console.log(e.shiftKey)
+
+      /*metaKey: 
+      - Retorna um valor booleano caso o botão META tenha sido pressionado ou não enquanto ocorria o evento de mouse.
+      - O botão seria aquele com icone do windows e para os teclados MAC seria o tecla command (cmd)
+      - Normalmente esse botão é reservado pelo sistema operacional para acessar o menu do computador. Com isso pode ser que mesmo pressionado ele retorne false, pois foi utilizado antes pelo sistema
+        * Testei aqui, e deu certo, mesmo que o menu tenha sido aberto.*/
+      console.log(e.metaKey)
+      console.log(e.relatedTarget)
     })
 
     document.getElementById("box2").addEventListener("mousedown", e => {
@@ -88,21 +123,39 @@
       const minibox = document.getElementById("minibox");
       /* Informações Gerais:
       - ***X - coordenada horizontal
-      - ***Y - coordenada vertical */
+      - ***Y - coordenada vertical 
+      - Os valores são em pixel*/
 
+      /*clientX/Y: Retorna as coordenadas do pontador do mouse pela janela de visualização/navegação*/
       const clientX = e.clientX
       const clientY = e.clientY
-      /*clientX/Y: Retorna aS coordenadaS do pontador do mouse pela janela de visualização/navegação*/
-
+      
+      /*screenX/Y
+      - Retorna as coordenadas do pontador do mouse pela tela do usuario
+      - Ele considera duas telas ou mais como uma só*/
       const screenX = e.screenX
       const screenY = e.screenY
-      /*screenX/Y
-      - Retorna aS coordenadaS do pontador do mouse pela tela do usuario
-      - Ele considera duas telas ou mais como uma só*/
-      /*pageX/Y*/
-      /*offsetX/Y*/
+      
+      /*pageX/Y
+      - Retorna as coordenadas do pontador do mouse baseado na area do documento
+      - O documento é a pagina web toda.Isso inclui todas as porções do document não visíveis.*/
+      const pageX = e.pageX
+      const pageY = e.pageY
+      
+      /*offsetX/Y
+      - Retorna as coordenadas do pontador do mouse baseado na área do elemento que disparou o evento ou nas áreas dos seus filhos.
+          * Aqui o evento é disparado no body. 
+          * Se ele estiver na área livre do body, ele leva em consideração as limitações da sua área
+          * Mas se em algum momento o mouse entrar em um dos filhos, ele começa a levar em consideração a limitação das áreas deles.
+          * Se você entrar dentro do elemento h1, perceberá que as coordenadas levarão em considerão as extremidades do h1 e não mais do body.
+          * Coloquei uma borda vermelha em todos os elementos da pagina para melhor visualização.*/
+      const offsetX = e.offsetX
+      const offsetY = e.offsetY
+
       minibox.innerText = `ClientX/Y: ${clientX}, ${clientY}
       ScreenX/Y: ${screenX}, ${screenY}
+      PageX/Y: ${pageX}, ${pageY}
+      OffsetX/Y: ${offsetX}, ${offsetY}
       `;
 
       if(clientX > 200){ //Exemplo de utilização
@@ -112,6 +165,32 @@
       }
     });
 
+    // Função para visualizar a diferença entre pageX/Y e clientX/Y
+    document.body.addEventListener("dblclick", e => {
+      alert(`PageX/Y: ${e.pageX}, ${e.pageY} - Para referência: ClientX/Y: ${e.clientX}, ${e.clientY} `)
+    });
+
+    document.getElementById("box4").addEventListener("mouseout", e => {
+      /*relatedTarget
+      -  Ela é usada para obter o elemento relacionado ao evento de mouse que está sendo disparado.
+      - Esse "relacionamento" muda de acordo com o tipo de evento
+      - Os eventos são mouseover, mouseout, mouseenter e mouseleave.
+        * Os outros eventos irão fazer com que o relatedTarget retorne "null"
+
+      - Funcionamento para cada evento:
+        * mouseover/mouseenter: .relatedTarget refere-se ao elemento que o mouse estava antes de mover-se para o elemento atual (Retorna daonde ele veio)
+          > .target: Retorna o elemento em que ele entrou
+
+        * mouseout/mouseleave: .relatedTarget refere-se ao elemento que ele está sobre após mover-se para fora do elemento atual (Retorna para onde ele foi
+          > .target: Retorna o elemento em que ele sair*/
+      
+      const target = e.target.id;
+      const relatedTarget = e.relatedTarget.id;
+      
+      console.log(`
+      Target: ${target}
+      Related Target: ${relatedTarget}`)
+    })
   </script>
 </body>
 </html>
