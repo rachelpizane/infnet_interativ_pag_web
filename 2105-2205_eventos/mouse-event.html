@@ -29,6 +29,7 @@
       border: 2px solid red;
       margin: 1rem 0;
       padding: .25rem;
+      background-color: white;
     }
 
     h2 {
@@ -46,6 +47,11 @@
     .minibox {
       width: 80px;
       height: 50px;
+      background-color: white;
+    }
+
+    .realce{
+      outline: 3px solid brown;
     }
   </style>
 </head>
@@ -64,11 +70,11 @@
     <p id="minibox"></p>
   </div>
 
-  <div id="box4" class="box box-s">
-    <div id="minibox1" class="minibox"></div>
-    <div id="minibox2" class="minibox"></div>
-    <div id="minibox3" class="minibox"></div>
-    <div id="minibox4" class="minibox"></div>
+  <div id="box4" class="box box-s color-3">
+    <div id="minibox1" class="minibox color-3"></div>
+    <div id="minibox2" class="minibox color-3"></div>
+    <div id="minibox3" class="minibox color-3"></div>
+    <div id="minibox4" class="minibox color-3"></div>
   </div>
   <script>
     // Conhecendo as propriedades e métodos do objeto MouseEvent
@@ -170,7 +176,7 @@
       alert(`PageX/Y: ${e.pageX}, ${e.pageY} - Para referência: ClientX/Y: ${e.clientX}, ${e.clientY} `)
     });
 
-    document.getElementById("box4").addEventListener("mouseout", e => {
+    document.getElementById("box4").addEventListener("mouseover", e => {
       /*relatedTarget
       -  Ela é usada para obter o elemento relacionado ao evento de mouse que está sendo disparado.
       - Esse "relacionamento" muda de acordo com o tipo de evento
@@ -182,14 +188,50 @@
           > .target: Retorna o elemento em que ele entrou
 
         * mouseout/mouseleave: .relatedTarget refere-se ao elemento que ele está sobre após mover-se para fora do elemento atual (Retorna para onde ele foi
-          > .target: Retorna o elemento em que ele sair*/
+          > .target: Retorna o elemento em que ele sair
+      - Exemplos do seu uso:
+        * Para evitar que um menu dropdown feche acidentalmente quando o usuário move o mouse rapidamente entre itens do menu, você pode verificar se o event.relatedTarget ainda está dentro do menu antes de fechá-lo.
+        
+        * Em uma galeria de imagens, você pode destacar uma imagem e mostrar informações adicionais quando o mouse se move para dentro dela e remover o destaque quando o mouse sai.
+      */
       
-      const target = e.target.id;
-      const relatedTarget = e.relatedTarget.id;
+      const target = e.target
+      const relatedTarget = e.relatedTarget;
       
-      console.log(`
-      Target: ${target}
-      Related Target: ${relatedTarget}`)
+      console.log(
+        `
+        Evento: Mouseover
+        Target (Elemento que entrou): 
+        ${target.id}
+
+        Related Target (Elemento de onde saiu): 
+        ${relatedTarget.id}
+        `)
+    })
+
+    // Função para visualizar o funcionamento do relatedTarget pelo evento mouseout
+    document.getElementById("box4").addEventListener("mouseout", e => {
+      const target = e.target
+      const relatedTarget = e.relatedTarget;
+     
+      if(target.id !== "box4"){
+        target.classList.toggle("realce")
+      } 
+      
+      if(relatedTarget.id !== "box4"){
+        relatedTarget.classList.toggle("realce")
+      }
+      
+  
+      console.log(
+        `
+        Evento: Mouseout
+        Target (Elemento de onde saiu:): 
+        ${target.id}
+
+        Related Target (Elemento que entrou): 
+        ${relatedTarget.id}
+        `)
     })
   </script>
 </body>
